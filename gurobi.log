@@ -1,0 +1,1752 @@
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:21:32 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:23:39 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:25:58 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:26:23 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:26:28 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:26:35 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:26:45 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:26:54 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:27:03 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:27:25 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:27:50 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:28:04 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:28:11 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:28:33 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:33:01 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:33:23 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:55:47 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:55:56 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:56:15 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:57:20 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:58:20 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 18:59:08 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:00:52 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:01:11 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:01:14 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:01:26 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:02:21 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:02:35 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:02:49 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:03:02 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:03:35 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:03:44 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:03:47 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:04:07 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:04:14 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:04:40 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:06:37 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:06:55 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:07:05 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:07:32 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:07:43 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:09:10 2016
+
+Warning: variable name "X(0, 0);test;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 577 columns and 578 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 577 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:14:43 2016
+
+Warning: variable name "X(0, 0);test;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 577 columns and 578 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 577 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 19:14:49 2016
+
+Warning: variable name "X(0, 0);test;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 577 columns and 578 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 577 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 22:15:38 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 22:17:12 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sat Jan  2 22:19:27 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:28:42 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:29:00 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:29:35 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:29:58 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:32:30 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:33:14 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:33:24 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:33:37 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:34:00 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:34:05 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:36:40 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:36:55 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:37:35 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:38:07 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:38:34 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:40:14 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:41:51 2016
+
+Warning: variable name "X(0, 0);Y;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 505 columns and 506 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 505 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:41:56 2016
+
+Warning: variable name "X(0, 0);Y;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 505 columns and 506 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 505 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 00:46:54 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 529 columns and 530 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 529 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 01:01:05 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 529 columns and 530 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 529 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 01:02:47 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 577 columns and 578 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 577 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 01:07:10 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 01:08:23 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 01:09:08 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 577 columns and 578 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 577 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 01:09:22 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 577 columns and 578 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 577 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 01:09:58 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 577 columns and 578 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 577 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 01:10:33 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 577 columns and 578 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 102 rows and 577 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 01:20:24 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 11 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Presolve removed 8 rows and 16 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Model is infeasible or unbounded
+Best objective -, best bound -, gap -
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 01:22:45 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 10 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 10 rows and 17 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:02:37 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:02:57 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:03:00 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:03:19 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:03:48 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:03:57 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 10 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 10 rows and 17 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:04:04 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 10 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 10 rows and 17 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:04:13 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 10 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 10 rows and 17 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:04:59 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 10 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 10 rows and 17 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:05:10 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 10 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 10 rows and 17 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:05:40 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 10 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 10 rows and 17 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:06:40 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 10 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 10 rows and 17 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:07:34 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 10 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 10 rows and 17 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:07:41 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 10 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 10 rows and 17 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 02:11:36 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 10 rows, 17 columns and 18 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 10 rows and 17 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 12:51:17 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 18 rows, 49 columns and 50 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 18 rows and 49 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:10:42 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:10:58 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:11:02 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:11:30 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:11:45 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:11:53 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 18 rows, 49 columns and 50 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 18 rows and 49 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:11:57 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 18 rows, 49 columns and 50 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 18 rows and 49 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:12:45 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:14:06 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:14:13 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:14:40 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:16:16 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:16:21 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:17:15 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 18 rows, 49 columns and 62 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -0
+Presolve removed 18 rows and 49 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -0.000000000000e+00, best bound -0.000000000000e+00, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:33:55 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:34:03 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:34:18 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 13:34:24 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:04:10 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:04:50 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 18 rows, 49 columns and 62 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -32
+Presolve removed 18 rows and 49 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -3.200000000000e+01, best bound -3.200000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:05:43 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:05:47 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:06:05 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:06:28 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 22 rows, 69 columns and 82 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -40
+Presolve removed 22 rows and 69 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -4.000000000000e+01, best bound -4.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:06:35 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 22 rows, 69 columns and 82 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -40
+Presolve removed 22 rows and 69 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -4.000000000000e+01, best bound -4.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:07:00 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 22 rows, 69 columns and 82 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -40
+Presolve removed 22 rows and 69 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -4.000000000000e+01, best bound -4.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:09:11 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 22 rows, 69 columns and 82 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -40
+Presolve removed 22 rows and 69 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -4.000000000000e+01, best bound -4.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:09:25 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 22 rows, 69 columns and 82 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -40
+Presolve removed 22 rows and 69 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -4.000000000000e+01, best bound -4.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:11:13 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 22 rows, 69 columns and 82 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -40
+Presolve removed 22 rows and 69 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -4.000000000000e+01, best bound -4.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:12:05 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 22 rows, 69 columns and 82 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -40
+Presolve removed 22 rows and 69 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -4.000000000000e+01, best bound -4.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:12:30 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 22 rows, 69 columns and 82 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -40
+Presolve removed 22 rows and 69 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.960000000000e+03, best bound 1.960000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:14:51 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:15:37 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:15:51 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:16:02 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:16:07 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:16:14 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:16:18 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:18:02 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:19:17 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:20:09 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:20:44 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:20:58 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:21:57 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:22:45 2016
+
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:22:56 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 469 columns and 955 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 805
+Presolve removed 94 rows and 428 columns
+Presolve time: 0.01s
+Presolved: 8 rows, 41 columns, 88 nonzeros
+Variable types: 0 continuous, 41 integer (29 binary)
+
+Root relaxation: objective 1.824000e+03, 10 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1824.00000    0    1  805.00000 1824.00000   127%     -    0s
+H    0     0                    1824.0000000 1824.00000  0.00%     -    0s
+
+Explored 0 nodes (13 simplex iterations) in 0.01 seconds
+Thread count was 2 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.824000000000e+03, best bound 1.824000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:23:08 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 504 columns and 1129 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 805
+Presolve removed 85 rows and 430 columns
+Presolve time: 0.00s
+Presolved: 17 rows, 74 columns, 164 nonzeros
+Variable types: 0 continuous, 74 integer (65 binary)
+
+Root relaxation: objective 1.828891e+03, 21 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1828.89062    0    2  805.00000 1828.89062   127%     -    0s
+H    0     0                    1828.0000000 1828.89062  0.05%     -    0s
+
+Explored 0 nodes (22 simplex iterations) in 0.00 seconds
+Thread count was 2 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.828000000000e+03, best bound 1.828000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:28:24 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 449 columns and 880 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 807
+Presolve removed 93 rows and 405 columns
+Presolve time: 0.00s
+Presolved: 9 rows, 44 columns, 95 nonzeros
+Variable types: 0 continuous, 44 integer (38 binary)
+
+Root relaxation: objective 1.823000e+03, 13 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+*    0     0               0    1823.0000000 1823.00000  0.00%     -    0s
+
+Explored 0 nodes (13 simplex iterations) in 0.00 seconds
+Thread count was 2 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.823000000000e+03, best bound 1.823000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:29:04 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 508 columns and 1087 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 1803
+Presolve removed 102 rows and 508 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.814000000000e+03, best bound 1.814000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:31:44 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 495 columns and 1167 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -189
+Presolve removed 79 rows and 397 columns
+Presolve time: 0.00s
+Presolved: 23 rows, 98 columns, 221 nonzeros
+Variable types: 0 continuous, 98 integer (88 binary)
+
+Root relaxation: objective 1.834219e+03, 25 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1834.21875    0    3 -189.00000 1834.21875  1070%     -    0s
+H    0     0                    1834.0000000 1834.21875  0.01%     -    0s
+
+Explored 0 nodes (25 simplex iterations) in 0.00 seconds
+Thread count was 2 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.834000000000e+03, best bound 1.834000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:34:30 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 499 columns and 1124 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 805
+Presolve removed 89 rows and 438 columns
+Presolve time: 0.00s
+Presolved: 13 rows, 61 columns, 133 nonzeros
+Variable types: 0 continuous, 61 integer (50 binary)
+
+Root relaxation: objective 1.829139e+03, 13 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1829.13859    0    2  805.00000 1829.13859   127%     -    0s
+H    0     0                    1828.0000000 1829.13859  0.06%     -    0s
+H    0     0                    1829.0000000 1829.13859  0.01%     -    0s
+
+Explored 0 nodes (13 simplex iterations) in 0.01 seconds
+Thread count was 2 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.829000000000e+03, best bound 1.829000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:36:41 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 489 columns and 1093 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 1806
+Presolve removed 85 rows and 412 columns
+Presolve time: 0.00s
+Presolved: 17 rows, 77 columns, 169 nonzeros
+Variable types: 0 continuous, 77 integer (68 binary)
+
+Root relaxation: objective 1.836562e+03, 22 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1836.56250    0    2 1806.00000 1836.56250  1.69%     -    0s
+H    0     0                    1836.0000000 1836.56250  0.03%     -    0s
+
+Explored 0 nodes (25 simplex iterations) in 0.00 seconds
+Thread count was 2 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.836000000000e+03, best bound 1.836000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:37:08 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 521 columns and 1137 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 805
+Presolve removed 94 rows and 470 columns
+Presolve time: 0.00s
+Presolved: 8 rows, 51 columns, 108 nonzeros
+Variable types: 0 continuous, 51 integer (40 binary)
+
+Root relaxation: objective 1.831692e+03, 9 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1831.69231    0    2  805.00000 1831.69231   128%     -    0s
+H    0     0                    1831.0000000 1831.69231  0.04%     -    0s
+
+Explored 0 nodes (9 simplex iterations) in 0.00 seconds
+Thread count was 2 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.831000000000e+03, best bound 1.831000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:37:19 2016
+
+Warning: variable name "X(0, 0);J;(2, 1)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 465 columns and 999 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 1807
+Presolve removed 85 rows and 387 columns
+Presolve time: 0.00s
+Presolved: 17 rows, 78 columns, 172 nonzeros
+Variable types: 0 continuous, 78 integer (64 binary)
+
+Root relaxation: objective 1.831182e+03, 20 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1831.18155    0    2 1807.00000 1831.18155  1.34%     -    0s
+H    0     0                    1831.0000000 1831.18155  0.01%     -    0s
+
+Explored 0 nodes (20 simplex iterations) in 0.00 seconds
+Thread count was 2 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.831000000000e+03, best bound 1.831000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:38:01 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 41 columns and 87 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 972
+Presolve removed 17 rows and 41 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.973000000000e+03, best bound 1.973000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:43:35 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 41 columns and 95 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 970
+Presolve removed 17 rows and 41 columns
+Presolve time: 0.01s
+
+Explored 0 nodes (0 simplex iterations) in 0.01 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.971000000000e+03, best bound 1.971000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:45:06 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 38 columns and 56 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 970
+Presolve removed 17 rows and 38 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.970000000000e+03, best bound 1.970000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:45:16 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 38 columns and 64 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 970
+Presolve removed 17 rows and 38 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.970000000000e+03, best bound 1.970000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:45:40 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 39 columns and 58 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -30
+Presolve removed 17 rows and 39 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.970000000000e+03, best bound 1.970000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:46:07 2016
+
+Warning: variable name "X(0, 0);H;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 41 columns and 51 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -30
+Presolve removed 17 rows and 41 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.970000000000e+03, best bound 1.970000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:49:32 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 41 columns and 70 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -30
+Presolve removed 17 rows and 41 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -3.000000000000e+01, best bound -3.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:51:16 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 41 columns and 70 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -30
+Presolve removed 17 rows and 41 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -3.000000000000e+01, best bound -3.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:52:42 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 35 columns and 43 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -30
+Presolve removed 17 rows and 35 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -3.000000000000e+01, best bound -3.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:54:03 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 41 columns and 76 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -29
+Presolve removed 15 rows and 35 columns
+Presolve time: 0.00s
+Presolved: 2 rows, 6 columns, 12 nonzeros
+Variable types: 0 continuous, 6 integer (4 binary)
+
+Root relaxation: objective -2.715625e+01, 5 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  -27.15625    0    2  -29.00000  -27.15625  6.36%     -    0s
+H    0     0                     -28.0000000  -27.15625  3.01%     -    0s
+
+Explored 0 nodes (5 simplex iterations) in 0.01 seconds
+Thread count was 2 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -2.800000000000e+01, best bound -2.800000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:56:15 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 39 columns and 54 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -30
+Presolve removed 17 rows and 39 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -3.000000000000e+01, best bound -3.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:57:29 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 37 columns and 60 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 2e+00]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -30
+Presolve removed 17 rows and 37 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective -3.000000000000e+01, best bound -3.000000000000e+01, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 14:58:30 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 33 columns and 83 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 1972
+Presolve removed 17 rows and 33 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.974000000000e+03, best bound 1.974000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 15:00:10 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 41 columns and 73 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -30
+Presolve removed 17 rows and 41 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.970000000000e+03, best bound 1.970000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 15:00:14 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 41 columns and 68 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -30
+Presolve removed 17 rows and 41 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.970000000000e+03, best bound 1.970000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 15:00:17 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 41 columns and 88 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 971
+Presolve removed 17 rows and 41 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.973000000000e+03, best bound 1.973000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 15:00:21 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 15 rows, 28 columns and 29 nonzeros
+Coefficient statistics:
+  Matrix range    [1e+00, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -26
+Presolve removed 15 rows and 28 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.974000000000e+03, best bound 1.974000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 15:01:05 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 41 columns and 73 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 970
+Presolve removed 17 rows and 41 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.970000000000e+03, best bound 1.970000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 15:01:16 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 17 rows, 41 columns and 73 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 970
+Presolve removed 17 rows and 41 columns
+Presolve time: 0.00s
+
+Explored 0 nodes (0 simplex iterations) in 0.00 seconds
+Thread count was 1 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.971000000000e+03, best bound 1.971000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 15:02:48 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 511 columns and 954 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective -197
+Presolve removed 93 rows and 468 columns
+Presolve time: 0.00s
+Presolved: 9 rows, 43 columns, 93 nonzeros
+Variable types: 0 continuous, 43 integer (36 binary)
+
+Root relaxation: objective 1.822500e+03, 12 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1822.50000    0    3 -197.00000 1822.50000  1025%     -    0s
+H    0     0                    1822.0000000 1822.50000  0.03%     -    0s
+
+Explored 0 nodes (14 simplex iterations) in 0.00 seconds
+Thread count was 2 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.822000000000e+03, best bound 1.822000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 15:03:29 2016
+
+Warning: variable name "X(0, 0);J;(1, 2)" has a space
+Warning: to let Gurobi read it back, use rlp format
+Optimize a model with 102 rows, 463 columns and 1077 nonzeros
+Coefficient statistics:
+  Matrix range    [6e-02, 1e+00]
+  Objective range [1e+00, 1e+03]
+  Bounds range    [1e+00, 1e+00]
+  RHS range       [1e+00, 1e+00]
+Found heuristic solution: objective 809
+Presolve removed 95 rows and 418 columns
+Presolve time: 0.00s
+Presolved: 7 rows, 45 columns, 95 nonzeros
+Variable types: 0 continuous, 45 integer (30 binary)
+
+Root relaxation: objective 1.830370e+03, 25 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1830.37019    0    2  809.00000 1830.37019   126%     -    0s
+H    0     0                    1830.0000000 1830.37019  0.02%     -    0s
+
+Explored 0 nodes (25 simplex iterations) in 0.00 seconds
+Thread count was 2 (of 4 available processors)
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.830000000000e+03, best bound 1.830000000000e+03, gap 0.0%
+
+Gurobi 6.0.5 (mac64) logging started Sun Jan  3 15:07:02 2016
+

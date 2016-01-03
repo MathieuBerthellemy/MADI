@@ -288,17 +288,18 @@ def trouverAdjacents(g, x, y):
 def bellman(g, x, y, poids, gamma):
     maximum = - 999
     voisins = trouverVoisins(g, x, y)
-    for i in range(len(voisins)):
-        adjacents = trouverAdjacents(g, voisins[i][0], voisins[i][1])
+    for voisin in voisins:
+        adjacents = trouverAdjacents(g, voisin[0], voisin[1])
         q = adjacents[0]
         caseEchec = adjacents[1]
-        reussite = bellman(g, voisins[i][0], voisins[i][1], poids, gamma)
+        reussite = bellman(g, voisin[0], voisin[1], poids, gamma)
         
         echec = 0
         for j in range(q):
+
             echec += 1/16 * bellman(g, adjacents[1][j][0], adjacents[1][j][1], poids, gamma)
 
-        possibilite = - (poids(g[voisins[i][0], voisins[i][1]]) - 1) + gamma * ((1 - q/16) * reussite + echec)
+        possibilite = - (poids(g[voisins[0], voisins[1]]) - 1) + gamma * ((1 - q/16) * reussite + echec)
         if possibilite > maximum:
             maximum = possibilite
     return maximum

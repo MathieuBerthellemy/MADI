@@ -2,6 +2,7 @@
 from Tkinter import *
 import numpy
 import numpy as np
+from PL import *
 
 def initialize():
     global PosX,PosY,cost, globalcost
@@ -219,5 +220,13 @@ Pion = Canevas.create_oval(PosX-10,PosY-10,PosX+10,PosY+10,width=2,outline='blac
 
 initialize()
 
+print g
+s = SolverGurobi(g)
+
+print s.get_solution()
+
 Mafenetre.mainloop()
+
+
+
 
