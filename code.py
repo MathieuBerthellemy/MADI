@@ -2,7 +2,8 @@
 from Tkinter import *
 import numpy
 import numpy as np
-from PL import *
+from SolverGurobi import *
+
 
 def initialize():
     global PosX,PosY,cost, globalcost
@@ -17,11 +18,11 @@ def initialize():
 
 def colordraw(g,nblignes,nbcolonnes):
     pmur=0.15 #0.15
-    pblanc=0.55 #0.55
-    pverte=0.1
-    pbleue=0.1
-    prouge=0.1
-    pnoire=0.1
+    pblanc=0.45 #0.55
+    pverte=0.0
+    pbleue=0.2
+    prouge=0.2
+    pnoire=0.0
     for i in range(nblignes):
         for j in range(nbcolonnes):
             z=np.random.uniform(0,1)
@@ -59,6 +60,136 @@ def colordraw(g,nblignes,nbcolonnes):
                     Canevas.create_rectangle(x, y, x+zoom*20, y+zoom*20, fill=myblack)
                     Canevas.create_rectangle(x, y, x+zoom*20, y+zoom*20, fill=myblack)
   
+
+def Clavier2():
+    global PosX,PosY,cost,g, globalcost, s
+    cj=(PosX-30)/(20*zoom)
+    li=(PosY-30)/(20*zoom)
+    changed=0
+    count_red = 0
+    count_blue = 0
+    touche = s.get_move(li, cj)
+
+
+    if touche == 'Y' and li>1 and cj < nbcolonnes-1 and g[li-2,cj+1]>-1:
+        PosY -= zoom*20*2
+        PosX += zoom*20 
+        cost[g[li-2,cj+1]]+=1 
+
+        if g[li-2,cj+1] == 3: 
+            count_red += 1
+        if g[li-2,cj+1] == 2: 
+            count_blue += 1
+
+        changed=1
+    # deplacement (-2,-1)
+    if touche == 'T' and li>1 and cj > 0 and g[li-2,cj-1]>-1:
+        PosY -= zoom*20*2       
+        PosX -= zoom*20                 
+        cost[g[li-2,cj-1]]+=1
+        changed=1
+
+        if g[li-2,cj-1] == 3: 
+            count_red += 1
+        if g[li-2,cj-1] == 2: 
+            count_blue += 1
+
+
+   # deplacement (-1,2)
+    if touche == 'U' and li>0 and cj < nbcolonnes-2 and g[li-1,cj+2]>-1:
+        PosY -= zoom*20        
+        PosX += zoom*20*2       
+        cost[g[li-1,cj+2]]+=1
+        changed=1
+        if g[li-1,cj+2] == 3: 
+            count_red += 1
+        if g[li-1,cj+2] == 2: 
+            count_blue += 1
+    # deplacement (-1,-2)
+    if touche == 'R' and li>0 and cj >1 and g[li-1,cj-2]>-1:
+        PosY -= zoom*20
+        PosX -= zoom*20*2           
+        cost[g[li-1,cj-2]]+=1
+        changed=1
+        if g[li-1,cj-2] == 3: 
+            count_red += 1
+        if g[li-1,cj-2] == 2: 
+            count_blue += 1
+     # deplacement (2,1)  
+    if touche == 'H' and li<nblignes-2 and cj < nbcolonnes-1 and g[li+2,cj+1]>-1:
+        PosY += zoom*20*2
+        PosX += zoom*20 
+        cost[g[li+2,cj+1]]+=1
+        changed=1
+        if g[li+2,cj+1] == 3: 
+            count_red += 1
+        if g[li+2,cj+1] == 2: 
+            count_blue += 1
+    # deplacement (2,-1)
+    if touche == 'G' and li<nblignes-2 and cj > 0 and g[li+2,cj-1]>-1:
+        PosY += zoom*20*2       
+        PosX -= zoom*20                 
+        cost[g[li+2,cj-1]]+=1
+        changed=1
+        if g[li+2,cj-1] == 3: 
+            count_red += 1
+        if g[li+2,cj-1] == 2: 
+            count_blue += 1
+   # deplacement (1,2)
+    if touche == 'J' and li<nblignes-1 and cj < nbcolonnes-2 and g[li+1,cj+2]>-1:
+        PosY += zoom*20        
+        PosX += zoom*20*2       
+        cost[g[li+1,cj+2]]+=1
+        changed=1
+        if g[li+1,cj+2] == 3: 
+            count_red += 1
+        if g[li+1,cj+2] == 2: 
+            count_blue += 1
+    # deplacement (1,-2)
+    if touche == 'F' and li<nblignes-1 and cj >1 and g[li+1,cj-2]>-1:
+        PosY += zoom*20
+        PosX -= zoom*20*2           
+        cost[g[li+1,cj-2]]+=1 
+        changed=1
+        if g[li+1,cj-2] == 3: 
+            count_red += 1
+        if g[li+1,cj-2] == 2: 
+            count_blue += 1
+
+    
+    if alea==1 and changed==1:
+        t=np.random.uniform(0,1)    
+        if t>0.5:
+            d=np.random.randint(8)
+            dli=0
+            if d== 0 or d==1 or d==2:
+                dli=-1
+            if d== 4 or d==5 or d==6:
+                dli==1
+            dcj=0
+            if d==0 or d==7 or d==6:
+                dcj=-1
+            if d==2 or d==3 or d==4:
+                dcj=1    
+        # l'effet aleatoire est applique s'il cree un deplacement sur une case admissible     
+            NewPosY = PosY+zoom*20*dli
+            NewPosX = PosX+zoom*20*dcj        
+            newcj=(NewPosX-30)/(20*zoom)
+            newli=(NewPosY-30)/(20*zoom)
+            #print('d',dli,dcj)
+            if newli>=0 and newcj>=0 and newli<=nblignes-1 and newcj<=nbcolonnes-1 and g[newli,newcj]>-1:
+                PosY=NewPosY
+                PosX=NewPosX        
+
+    return count_blue, count_red    
+            
+# on dessine le pion a sa nouvelle position
+    Canevas.coords(Pion,PosX -9*zoom, PosY -9*zoom, PosX +9*zoom, PosY +9*zoom)       
+    globalcost=0    
+    for k in range(5):
+        globalcost+=cost[k]*weight[k]
+    w.config(text='Cost = '+ str(globalcost))  
+
 def Clavier(event):
     global PosX,PosY,cost,g, globalcost
     touche = event.keysym
@@ -75,6 +206,7 @@ def Clavier(event):
         PosY -= zoom*20*2
         PosX += zoom*20 
         cost[g[li-2,cj+1]]+=1 
+
         changed=1
     # deplacement (-2,-1)
     if touche == 't' and li>1 and cj > 0 and g[li-2,cj-1]>-1:
@@ -82,6 +214,9 @@ def Clavier(event):
         PosX -= zoom*20                 
         cost[g[li-2,cj-1]]+=1
         changed=1
+
+
+
    # deplacement (-1,2)
     if touche == 'u' and li>0 and cj < nbcolonnes-2 and g[li-1,cj+2]>-1:
         PosY -= zoom*20        
@@ -119,9 +254,9 @@ def Clavier(event):
         cost[g[li+1,cj-2]]+=1 
         changed=1
 
-
 # La variable alea =1 si on veut des effets aleatoires sinon les transitions sont deterministes
     #On ajoute un effet aleatoire dans les transitions
+
     if alea==1 and changed==1:
         t=np.random.uniform(0,1)    
         if t>0.5:
@@ -156,13 +291,15 @@ def Clavier(event):
 Mafenetre = Tk()
 Mafenetre.title('MDP')
 
-zoom=2
 
-alea = 0 #transitions aleatoires si alea =1 sinon mettre alea=0
+zoom = 2
+
+
+alea = 1 #transitions aleatoires si alea =1 sinon mettre alea=0
 
 #taille de la grille
 nblignes=10
-nbcolonnes=10
+nbcolonnes=15
  
 globalcost=0
 
@@ -218,14 +355,47 @@ w.pack()
 
 Pion = Canevas.create_oval(PosX-10,PosY-10,PosX+10,PosY+10,width=2,outline='black',fill=myyellow)
 
+
+
 initialize()
 
 print g
 s = SolverGurobi(g)
 
-print s.get_solution()
+s.print_solution()
+
+(width, height) = g.shape
+for x in range(width):
+    for y in range(height):
+        Canevas.create_text(y*20*zoom+20+10, x*20*zoom+20+10, text=s.get_move(x, y)) 
+
+
+
+cum_count_red = 0
+cum_count_blue = 0
+rep = 1000
+for i in range(rep):
+    initialize()
+    count_red = 0
+    count_blue = 0
+    while True:
+        blue, red = Clavier2()
+        count_blue += blue
+        count_red += red
+        y=(PosX-30)/(20*zoom)
+        x=(PosY-30)/(20*zoom)
+        if x == nblignes-1 and y == nbcolonnes-1:
+            print "fini: ", count_blue, count_red
+            cum_count_red += count_red
+            cum_count_blue += count_blue
+            break
+
+print "BLUE: ", cum_count_blue/float(rep)
+print "RED: ", cum_count_red/float(rep)
+
 
 Mafenetre.mainloop()
+
 
 
 
