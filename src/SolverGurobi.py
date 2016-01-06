@@ -1,21 +1,55 @@
 import numpy
 import numpy as np
 from gurobipy import *
+import math
 
 class SolverGurobi:
 	"""
 		ATTRIBUTES
 			- grid, np.matrix NxM
-			- X
+			- V
 			- solution
+			- values
 	"""
 	def __init__(self, grid):
-		self.gamma = 0.7
+		
 		self.grid = grid
+		self.width = len(grid)
+		self.height = len(grid[0])
+		self.gamma = min(self._compute_gamma(), 0.8)
+		
 		self._solve()
 
-	def print_solution(self):
-		print self.solution
+	def _compute_gamma(self):
+		D = self.width+self.height
+
+		output = 0.5
+		output_bounds = (0, 1)
+
+		window = (5, 10)
+		while True:
+
+			tmp = self._get_R(self.width-1, self.height-1)
+			for i in range(int(D/4)):
+				tmp = math.pow(tmp, output)
+		
+			# Si en dessous de la fenetre
+			if tmp < window[0]:
+				output_bounds = (output, output_bounds[1])
+
+			# S au dessus de la fenetre
+			elif tmp > window[1]:
+				output_bounds = (output_bounds[0], output)
+			# Si dans la fenetre
+			else:
+				break
+
+			output = (output_bounds[0] + output_bounds[1])/2
+			#print output, ": ", output_bounds, ", ", tmp
+
+		print "gama = ", output
+		return output
+
 
 	def get_move(self, x, y):
 		return self.solution[x][y]
@@ -24,35 +58,37 @@ class SolverGurobi:
 		model = self._def_PL()
 		model.write("pl.lp")
 		model.optimize()
-		self.solution = self.convert(model.getVars())
+		self.solution, self.values = self.convert(model.getVars())
 		
 
 	def convert(self, vars):
-		width = len(self.grid)
-		height = len(self.grid[0])
 
-		output = np.chararray((width, height))
-
-		for x in range(width):
-			for y in range(height):	
-				best_v = 0
-				for action, (x_n, y_n) in self._get_neighborhood(x, y):
-					if self.V[x_n][y_n].x > best_v:
-						if self.grid[x][y] == -1:
-							output[x][y] = '_'
-						else:
-							output[x][y] = action
-		return output
+		output1 = np.chararray((self.width, self.height))
+		output2 = np.zeros((self.width, self.height))
+		for x in range(self.width):
+			for y in range(self.height):
+				if self.grid[x][y] == -1:
+					output1[x][y] = '_'
+					output2[x][y] = -1
+				else:
+					output2[x][y] = self.V[x][y].x
+					
+					best_v = 0
+					for action, (x_n, y_n) in self._get_neighborhood(x, y):
+						if self.V[x_n][y_n].x > best_v:
+							output1[x][y] = action
+							best_v = self.V[x_n][y_n].x
+				
+							
+		return output1, output2
 
 	def _get_R(self, x, y):
-		width = len(self.grid)
-		height = len(self.grid[0])
 		output = -1
 		if self._is_blue(x, y):
 			output = -1
 		elif self._is_red(x, y):
 			output = -1
-		elif x == width-1 and y == height-1:
+		elif x == self.width-1 and y == self.height-1:
 			output = 1000
 		else:
 			output = -2
@@ -90,17 +126,13 @@ class SolverGurobi:
 		return model
 
 	def _set_constraint_end(self, model):
-		width = len(self.grid)
-		height = len(self.grid[0])
-		model.addConstr(self.V[width-1][height-1], GRB.EQUAL, 1000)
+		model.addConstr(self.V[self.width-1][self.height-1], GRB.EQUAL, 1000)
 
 	def _set_constraint_main(self, model):
-		width = len(self.grid)
-		height = len(self.grid[0])
 
-		for x in range(width):
-			for y in range(height):
-				if x != width - 1 and y != height - 1:
+		for x in range(self.width):
+			for y in range(self.height):
+				if self.grid[x][y] != -1:
 					neighborhood = self._get_neighborhood(x, y)
 					for action, (x_n, y_n) in neighborhood:
 						tmp = LinExpr()
@@ -114,12 +146,10 @@ class SolverGurobi:
 	def _set_constraint_linearisation_max(self, model, z):
 		tmp_blue = LinExpr();
 		tmp_red = LinExpr();
-		
-		width = len(self.grid)
-		height = len(self.grid[0])
+	
 
-		for x in range(width):
-			for y in range(height):
+		for x in range(self.width):
+			for y in range(self.height):
 				var = self.V[x][y]
 				if self._is_blue(x, y):
 					tmp_blue.add(var, 1.0)
@@ -132,7 +162,7 @@ class SolverGurobi:
 	def _set_constraints(self, model, z):
 		self._set_constraint_main(model)
 		self._set_constraint_linearisation_max(model, z)
-		self._set_constraint_end(model)
+		#self._set_constraint_end(model)
 		model.update()
 
 	def _get_vars(self, model):
@@ -140,31 +170,29 @@ class SolverGurobi:
 			z: INTEGER
 			X: dictionary<var, tupple>, var -> GRB var, action
 		"""
-		width = len(self.grid)
-		height = len(self.grid[0])
 
 		z = model.addVar(vtype=GRB.CONTINUOUS, name="z")
 		V = []
 		
-		for x in range(width):
+		for x in range(self.width):
 			V.append([])
-			for y in range(height):
+			for y in range(self.height):
 				V[x].append([])
-				V[x][y] = model.addVar(vtype=GRB.CONTINUOUS, name="V(%d, %d)"%(x, y))
+				if self.grid[x][y] != -1:
+					V[x][y] = model.addVar(vtype=GRB.CONTINUOUS, name="V(%d, %d)"%(x, y))
 				
 		model.update()
 		return z, V
 
 	def _set_objectif(self, model, z):
 		tmp = LinExpr()
-		width = len(self.grid)
-		height = len(self.grid[0])
 		
-		for x in range(width):
-			for y in range(height):
-				tmp.add(self.V[x][y], 1.0)
+		for x in range(self.width):
+			for y in range(self.height):
+				if self.grid[x][y] != -1:
+					tmp.add(self.V[x][y], 1.0)
 
-		tmp.add(z, 1.0)
+		tmp.add(z, -1.0)
 
 		model.setObjective(tmp, GRB.MINIMIZE)
 		model.update()

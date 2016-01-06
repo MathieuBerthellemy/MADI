@@ -1,8 +1,10 @@
 # script pion.py hjyf
+from __future__ import division
 from Tkinter import *
 import numpy
 import numpy as np
 from SolverGurobi import *
+import math
 
 
 def initialize():
@@ -328,23 +330,22 @@ mywalls="#5E5E64"
 mywhite="#FFFFFF"
 color=[mywhite,mygreen,myblue,myred,myblack]
 
+
 # ecriture du quadrillage et coloration
 Canevas = Canvas(Mafenetre, width = Largeur, height =Hauteur, bg =mywhite)
-for i in range(nblignes+1):
-    ni=zoom*20*i+20
-    Canevas.create_line(20, ni, Largeur-20,ni)
-for j in range(nbcolonnes+1):
-    nj=zoom*20*j+20
-    Canevas.create_line(nj, 20, nj, Hauteur-20)
-colordraw(g,nblignes,nbcolonnes)
+PosX = 20+10*zoom
+PosY = 20+10*zoom
+Pion = Canevas.create_oval(PosX-10,PosY-10,PosX+10,PosY+10,width=2,outline='black',fill=myyellow)
+
+
 
  
 Canevas.focus_set()
 Canevas.bind('<Key>',Clavier)
 Canevas.pack(padx =5, pady =5)
 
-PosX = 20+10*zoom
-PosY = 20+10*zoom
+
+
 
 # Creation d'un widget Button (bouton Quitter)
 Button(Mafenetre, text ='Restart', command = initialize).pack(side=LEFT,padx=5,pady=5)
@@ -353,45 +354,123 @@ Button(Mafenetre, text ='Quit', command = Mafenetre.destroy).pack(side=LEFT,padx
 w = Label(Mafenetre, text='Cost = '+str(globalcost),fg=myblack,font = "Verdana 14 bold")
 w.pack() 
 
-Pion = Canevas.create_oval(PosX-10,PosY-10,PosX+10,PosY+10,width=2,outline='black',fill=myyellow)
 
 
-
+(width, height) = g.shape
 initialize()
+for i in range(nblignes+1):
+    ni=zoom*20*i+20
+    Canevas.create_line(20, ni, Largeur-20,ni)
+for j in range(nbcolonnes+1):
+    nj=zoom*20*j+20
+    Canevas.create_line(nj, 20, nj, Hauteur-20)
+colordraw(g,nblignes,nbcolonnes)
+
 
 print g
 s = SolverGurobi(g)
+print s.solution
+print s.values
 
-s.print_solution()
+ 
 
-(width, height) = g.shape
-for x in range(width):
-    for y in range(height):
-        Canevas.create_text(y*20*zoom+20+10, x*20*zoom+20+10, text=s.get_move(x, y)) 
+def min_except(matrix, *forbidden):
+    output = 9999999
+    for x in range(matrix):
+        for y in range(matrix[0]):
+            if matrix[x][y] not in forbidden:
+                output = min(output, matrix[x][y])
+    return output
+
+def echelle(c1, c2, c3, val, min_val, max_val):
+    r1, g1, b1 = c1[0], c1[1], c1[2]
+    r2, g2, b2 = c2[0], c2[1], c2[2]
+    r3, g3, b3 = c3[0], c3[1], c3[2]
+    
+    r = 0
+    g = 0
+    b = 0
+
+    middle = (max_val + min_val)/2
+
+    if val < middle:
+        alpha = 1 - (val - min_val) / (middle - min_val)
+        beta = val / (middle - min_val)
+
+        r = int(r1 * alpha + r2 * beta)
+        g = int(g1 * alpha + g2 * beta)
+        b = int(b1 * alpha + b2 * beta)
+    else:
+        alpha = 1 - (val - middle) / (max_val - middle)
+        beta = (val - middle) /  (max_val - middle)
+
+        r = int(r2 * alpha + r3 * beta)
+        g = int(g2 * alpha + g3 * beta)
+        b = int(b2 * alpha + b3 * beta)
+
+    return (r, g, b)
+
+
+for lin in range(width):
+    for col in range(height):
+        y = col*20*zoom+20
+        x = lin*20*zoom+20
+            
+        
+        if g[lin][col] != -1:
+
+            (red, green, blue) = echelle((250, 250, 0), (90, 90, 200), (254, 90, 90), int(s.values[lin][col]), int(s.values.min()), int(s.values.max()))
+
+            case_color = "#%02x%02x%02x"%(red, green, blue) 
+            rec = Canevas.create_rectangle(y, x, y+zoom*20, x+zoom*20, fill=case_color)
+
+            Canevas.tag_lower(rec)   
+            Canevas.create_text(y +10, x +10, text=s.get_move(lin, col)) 
+           # Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
+
+
+
 
 
 
 cum_count_red = 0
 cum_count_blue = 0
-rep = 1000
+cum_count_coup = 0
+cum_count_score = 0
+rep = 100
 for i in range(rep):
     initialize()
     count_red = 0
     count_blue = 0
+    count_coup = 0
+    count_score = 0
+    #print "rep", i
     while True:
+        count_score -= 2
+        count_score = count_score + red + blue
+        
+        count_coup += 1
+       
         blue, red = Clavier2()
         count_blue += blue
         count_red += red
-        y=(PosX-30)/(20*zoom)
-        x=(PosY-30)/(20*zoom)
+        y=int((PosX-30)/(20*zoom))
+        x=int((PosY-30)/(20*zoom))
+
+        #print x, y
         if x == nblignes-1 and y == nbcolonnes-1:
-            print "fini: ", count_blue, count_red
+            count_score += 1000
+            #print "fini: ", count_blue, count_red
             cum_count_red += count_red
             cum_count_blue += count_blue
+            cum_count_coup += count_coup
+            cum_count_score += count_score
             break
 
 print "BLUE: ", cum_count_blue/float(rep)
 print "RED: ", cum_count_red/float(rep)
+print "Coups: ", cum_count_coup/float(rep)
+print "Score: ", cum_count_score/float(rep)
 
 
 Mafenetre.mainloop()
