@@ -1,11 +1,14 @@
 # script pion.py hjyf
 from __future__ import division
 from Tkinter import *
-import numpy
 import numpy as np
 from SolverGurobi import *
+from SolverIteration import *
+from SolverIteration2 import *
 import math
+import time
 
+question = 2
 
 def initialize():
     global PosX,PosY,cost, globalcost
@@ -19,12 +22,29 @@ def initialize():
     w.config(text='Cost = '+ str(globalcost))
 
 def colordraw(g,nblignes,nbcolonnes):
-    pmur=0.15 #0.15
-    pblanc=0.45 #0.55
-    pverte=0.0
-    pbleue=0.2
-    prouge=0.2
-    pnoire=0.0
+    global question
+    pmur=-1 #0.15
+    pblanc=-1 #0.55
+    pverte=-1
+    pbleue=-1
+    prouge=-1
+    pnoire=-1
+
+    if question == 1:
+        pmur=0.15 #0.15
+        pblanc=0.55 #0.55
+        pverte=0.1
+        pbleue=0.1
+        prouge=0.1
+        pnoire=0.1
+    elif question == 2:
+        pmur=0.15 #0.15
+        pblanc=0.45 #0.55
+        pverte=0.0
+        pbleue=0.2
+        prouge=0.2
+        pnoire=0.0
+
     for i in range(nblignes):
         for j in range(nbcolonnes):
             z=np.random.uniform(0,1)
@@ -61,16 +81,16 @@ def colordraw(g,nblignes,nbcolonnes):
                 if g[i,j]<0:
                     Canevas.create_rectangle(x, y, x+zoom*20, y+zoom*20, fill=myblack)
                     Canevas.create_rectangle(x, y, x+zoom*20, y+zoom*20, fill=myblack)
+
   
 
-def Clavier2():
+def Play(selector, li, cj):
     global PosX,PosY,cost,g, globalcost, s
-    cj=(PosX-30)/(20*zoom)
-    li=(PosY-30)/(20*zoom)
     changed=0
     count_red = 0
     count_blue = 0
-    touche = s.get_move(li, cj)
+
+    touche = selector.get_move(x, y)
 
 
     if touche == 'Y' and li>1 and cj < nbcolonnes-1 and g[li-2,cj+1]>-1:
@@ -310,14 +330,22 @@ Largeur = zoom*20*nbcolonnes+40
 Hauteur = zoom*20*nblignes+40
  
 # valeurs de la grille
-g= np.zeros((nblignes,nbcolonnes), dtype=numpy.int)
+g = np.zeros((nblignes,nbcolonnes), dtype=numpy.int)
 cost= np.zeros(5, dtype=numpy.int)
-weight= np.zeros(5, dtype=numpy.int)
-weight[0] = 1
-weight[1] = 10
-weight[2] = 20
-weight[3] = 30
-weight[4] = 40
+weight= np.zeros(6, dtype=numpy.int)
+
+if question == 1:
+    weight[0] = 1
+    weight[1] = 10
+    weight[2] = 20
+    weight[3] = 30
+    weight[4] = 40
+elif question == 2:
+    weight[0] = 2
+    weight[1] = 0
+    weight[2] = -1
+    weight[3] = -1
+    weight[4] = 0
 
 # def des couleurs
 myred="#D20B18"
@@ -366,11 +394,16 @@ for j in range(nbcolonnes+1):
     Canevas.create_line(nj, 20, nj, Hauteur-20)
 colordraw(g,nblignes,nbcolonnes)
 
-
 print g
-s = SolverGurobi(g)
-print s.solution
-print s.values
+if question == 1:
+    s = SolverIteration(g, weight)
+    #print s.solution
+    #print s.values
+elif question == 2:
+    s = SolverIteration2(g, weight)
+    #s = SolverGurobi(g)
+    #print s.solution
+    #print s.values
 
  
 
@@ -419,58 +452,129 @@ for lin in range(width):
         
         if g[lin][col] != -1:
 
-            (red, green, blue) = echelle((250, 250, 0), (90, 90, 200), (254, 90, 90), int(s.values[lin][col]), int(s.values.min()), int(s.values.max()))
+            (red, green, blue) = echelle((90, 90, 200), (200, 180, 0), (254, 90, 90), int(s.values[lin][col]), int(s.values.min()), int(s.values.max()))
 
             case_color = "#%02x%02x%02x"%(red, green, blue) 
             rec = Canevas.create_rectangle(y, x, y+zoom*20, x+zoom*20, fill=case_color)
 
             Canevas.tag_lower(rec)   
-            Canevas.create_text(y +10, x +10, text=s.get_move(lin, col)) 
-           # Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
+            Canevas.create_text(y +10, x +10, text=s.get_move(lin, col))
+            Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
 
 
+# if question == 1:
+#     pass
+# elif question == 2:
+#     t0_1 = time.time()
+#     s_1 = SolverGurobi(g)
+#     count_time_1 = time.time() - t0_1
 
+#     t0_2 = time.time()
+#     s_2 = SolverIteration2(g, weight)
+#     count_time_2 = time.time() - t0_2
 
+#     print s_1.solution
+#     print s_2.solution
 
+#     rouge_1 = []
+#     bleu_1 = []
 
-cum_count_red = 0
-cum_count_blue = 0
-cum_count_coup = 0
-cum_count_score = 0
-rep = 100
-for i in range(rep):
-    initialize()
-    count_red = 0
-    count_blue = 0
-    count_coup = 0
-    count_score = 0
-    #print "rep", i
-    while True:
-        count_score -= 2
-        count_score = count_score + red + blue
+#     cum_count_coup_1 = 0
+#     cum_count_score_1 = 0
+#     cum_count_time_1 = 0
+
+#     rouge_2 = []
+#     bleu_2 = []
+
+#     cum_count_red_2 = 0
+#     cum_count_blue_2 = 0
+#     cum_count_coup_2 = 0
+#     cum_count_score_2 = 0
+#     cum_count_time_2 = 0
+
+#     rep = 10
+#     for i in range(rep):
+#         initialize()
         
-        count_coup += 1
-       
-        blue, red = Clavier2()
-        count_blue += blue
-        count_red += red
-        y=int((PosX-30)/(20*zoom))
-        x=int((PosY-30)/(20*zoom))
+#         count_red_1 = 0
+#         count_blue_1 = 0
+#         count_coup_1 = 0
+#         count_score_1 = 0
+#         #print "rep", i
+#         while True:
+#             count_score_1 -= 2
+#             count_score_1 = count_score_1 + red + blue
+            
+#             count_coup_1 += 1
+           
+#             y=int((PosX-30)/(20*zoom))
+#             x=int((PosY-30)/(20*zoom))
 
-        #print x, y
-        if x == nblignes-1 and y == nbcolonnes-1:
-            count_score += 1000
-            #print "fini: ", count_blue, count_red
-            cum_count_red += count_red
-            cum_count_blue += count_blue
-            cum_count_coup += count_coup
-            cum_count_score += count_score
-            break
+#             blue, red = Play(s_1, x, y)
+#             count_blue_1 += blue
+#             count_red_1 += red
 
-print "BLUE: ", cum_count_blue/float(rep)
-print "RED: ", cum_count_red/float(rep)
-print "Coups: ", cum_count_coup/float(rep)
-print "Score: ", cum_count_score/float(rep)
+#             #print x, y
+#             if x == nblignes-1 and y == nbcolonnes-1:
+#                 count_score_1 += 1000
+#                 #print "fini: ", count_blue, count_red
+#                 rouge_1.append(count_red_1)
+#                 bleu_1.append(count_blue_1)
+#                 cum_count_coup_1 += count_coup_1
+#                 cum_count_score_1 += count_score_1
+#                 break
+        
+        
+
+#         initialize()
+#         count_red_2 = 0
+#         count_blue_2 = 0
+#         count_coup_2 = 0
+#         count_score_2 = 0
+#         #print "rep", i
+#         while True:
+
+#             count_score_2 -= 2
+#             count_score_2 = count_score_2 + red + blue
+            
+#             count_coup_2 += 1
+           
+#             y=int((PosX-30)/(20*zoom))
+#             x=int((PosY-30)/(20*zoom))
+
+#             blue, red = Play(s_2, x, y)
+#             count_blue_2 += blue
+#             count_red_2 += red
+
+#             #print x, y
+#             if x == nblignes-1 and y == nbcolonnes-1:
+#                 count_score_2 += 1000
+#                 #print "fini: ", count_blue, count_red
+#                 rouge_2.append(count_red_2)
+#                 bleu_2.append(count_blue_2)
+#                 cum_count_coup_2 += count_coup_2
+#                 cum_count_score_2 += count_score_2
+#                 break
+        
+        
+
+#     print "######## PL ########"
+#     print "BLUE: ", np.mean(bleu_1)
+#     print "RED: ", np.mean(rouge_1)
+#     print "Coups: ", cum_count_coup_1/float(rep)
+#     print "Score: ", cum_count_score_1/float(rep)
+#     print "Computing: %.2f"%count_time_1
+#     print "####################"
+
+#     print "#### Iteration ####"
+#     print "BLUE: ", np.mean(bleu_2)
+#     print "RED: ", np.mean(rouge_2)
+#     print "Coups: ", cum_count_coup_2/float(rep)
+#     print "Score: ", cum_count_score_2/float(rep)
+#     print "Computing: %.2f"%count_time_2
+#     print "###################"
+
+
 
 
 Mafenetre.mainloop()

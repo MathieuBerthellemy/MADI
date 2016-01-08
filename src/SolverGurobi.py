@@ -11,14 +11,17 @@ class SolverGurobi:
 			- solution
 			- values
 	"""
-	def __init__(self, grid):
-		
+	def __init__(self, grid, alpha=0.5):
+		self.alpha = alpha # part du but pour arriver a destination
 		self.grid = grid
 		self.width = len(grid)
 		self.height = len(grid[0])
 		self.gamma = min(self._compute_gamma(), 0.8)
 		
 		self._solve()
+
+	
+
 
 	def _compute_gamma(self):
 		D = self.width+self.height
@@ -47,7 +50,7 @@ class SolverGurobi:
 			output = (output_bounds[0] + output_bounds[1])/2
 			#print output, ": ", output_bounds, ", ", tmp
 
-		print "gama = ", output
+		#print "gamma = ", output
 		return output
 
 
@@ -61,10 +64,22 @@ class SolverGurobi:
 		self.solution, self.values = self.convert(model.getVars())
 		
 
+	def get_S(self):
+		"""
+			retourne une liste des coordonnees de tous les etats possible
+		"""
+		output = []
+		for lin in range(self.grid.shape[0]):
+			for col in range(self.grid.shape[1]):
+				if self.grid[lin][col] != -1:
+					output.append((lin, col))
+		return output
+
 	def convert(self, vars):
 
 		output1 = np.chararray((self.width, self.height))
 		output2 = np.zeros((self.width, self.height))
+		last_value = 0
 		for x in range(self.width):
 			for y in range(self.height):
 				if self.grid[x][y] == -1:
@@ -129,24 +144,20 @@ class SolverGurobi:
 		model.addConstr(self.V[self.width-1][self.height-1], GRB.EQUAL, 1000)
 
 	def _set_constraint_main(self, model):
-
-		for x in range(self.width):
-			for y in range(self.height):
-				if self.grid[x][y] != -1:
-					neighborhood = self._get_neighborhood(x, y)
-					for action, (x_n, y_n) in neighborhood:
-						tmp = LinExpr()
-						tmp.add(self.V[x_n][y_n], 1.0-(len(neighborhood)/16.0))
-
-						for (x2_n, y2_n) in self._get_adjacents(x_n, y_n):
-							tmp.add(self.V[x2_n][y2_n], 1.0/16.0)
-						
-						model.addConstr(self.V[x][y], GRB.GREATER_EQUAL, self._get_R(x_n, y_n) + self.gamma * tmp)
+		for (x, y) in self.get_S():
+			neighborhood = self._get_neighborhood(x, y)
+			for action, (x_n, y_n) in neighborhood:
+				tmp = LinExpr()
+				adjacents = self._get_adjacents(x_n, y_n)
+				tmp.add(self.V[x_n][y_n], 1.0-(len(adjacents)/16.0))
+				for (x2_n, y2_n) in adjacents:
+					tmp.add(self.V[x2_n][y2_n], 1.0/16.0)
+				
+				model.addConstr(self.V[x][y], GRB.GREATER_EQUAL, self._get_R(x_n, y_n) + self.gamma * tmp)
 
 	def _set_constraint_linearisation_max(self, model, z):
 		tmp_blue = LinExpr();
 		tmp_red = LinExpr();
-	
 
 		for x in range(self.width):
 			for y in range(self.height):
@@ -190,9 +201,9 @@ class SolverGurobi:
 		for x in range(self.width):
 			for y in range(self.height):
 				if self.grid[x][y] != -1:
-					tmp.add(self.V[x][y], 1.0)
+					tmp.add(self.V[x][y], self.alpha)
 
-		tmp.add(z, -1.0)
+		tmp.add(z, -(1-self.alpha))
 
 		model.setObjective(tmp, GRB.MINIMIZE)
 		model.update()
