@@ -465,7 +465,7 @@ for lin in range(width):
 if question == 1:
     pass
 elif question == 2:
-    do_PL = True
+    do_PL = False
     do_Iteration = True
 
     s_1 = None

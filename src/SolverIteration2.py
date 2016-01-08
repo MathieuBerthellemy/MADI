@@ -7,7 +7,7 @@ class SolverIteration2:
 		self.weight = weight
 
 		self.gamma = self.compute_gamma()
-		self.epsilon = 0.5
+		self.epsilon = 0.4
 		
 		self.Vs = []
 		self.Q_at = []
@@ -79,7 +79,6 @@ class SolverIteration2:
 		while True:
 			self.nouvelle_iteration()
 			
-
 			# matrice binaire, 1 -> la case lin/col a deja ete calculee, 0 sinon
 			# Pour l'amelioration de Gauss Seidel	
 			already_computed = np.zeros(self.grid.shape)
@@ -97,7 +96,9 @@ class SolverIteration2:
 				self.Vs[self.t][lin, col] = max([0]+[value for key, value in self.Q_at[self.t][col][lin].items()])
 				already_computed[lin, col] = 1
 
-			if self.get_max_diff_V() <= self.epsilon or self.t > 100:
+			d  = self.get_max_diff_V()
+			print d
+			if d <= self.epsilon or self.t > 100:
 				break
 
 	def get_max_diff_V(self):
@@ -105,7 +106,7 @@ class SolverIteration2:
 			retourne la plus grande difference Vt, Vt-1
 		"""
 
-		return max([self.Vs[self.t][lin, col] - self.Vs[self.t-1][lin, col] for (lin, col) in self.get_S()])
+		return max([abs(self.Vs[self.t][lin, col] - self.Vs[self.t-1][lin, col])/self.Vs[self.t][lin, col]  for (lin, col) in self.get_S()])
 
 
 	def get_esperance_utilite(self, lin, col, already_computed):
