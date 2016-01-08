@@ -17,10 +17,8 @@ class SolverGurobi:
 		self.width = len(grid)
 		self.height = len(grid[0])
 		self.gamma = min(self._compute_gamma(), 0.8)
-		
+		print self.gamma
 		self._solve()
-
-	
 
 
 	def _compute_gamma(self):
@@ -61,7 +59,7 @@ class SolverGurobi:
 		model = self._def_PL()
 		model.write("pl.lp")
 		model.optimize()
-		self.solution, self.values = self.convert(model.getVars())
+		self.solution, self.values = self._convert(model.getVars())
 		
 
 	def get_S(self):
@@ -75,7 +73,7 @@ class SolverGurobi:
 					output.append((lin, col))
 		return output
 
-	def convert(self, vars):
+	def _convert(self, vars):
 
 		output1 = np.chararray((self.width, self.height))
 		output2 = np.zeros((self.width, self.height))
@@ -104,7 +102,7 @@ class SolverGurobi:
 		elif self._is_red(x, y):
 			output = -1
 		elif x == self.width-1 and y == self.height-1:
-			output = 1000
+			output = 998
 		else:
 			output = -2
 		return output
@@ -153,7 +151,7 @@ class SolverGurobi:
 				for (x2_n, y2_n) in adjacents:
 					tmp.add(self.V[x2_n][y2_n], 1.0/16.0)
 				
-				model.addConstr(self.V[x][y], GRB.GREATER_EQUAL, self._get_R(x_n, y_n) + self.gamma * tmp)
+				model.addConstr(self.V[x][y], GRB.GREATER_EQUAL, self._get_R(x, y) + self.gamma * tmp)
 
 	def _set_constraint_linearisation_max(self, model, z):
 		tmp_blue = LinExpr();
@@ -173,7 +171,6 @@ class SolverGurobi:
 	def _set_constraints(self, model, z):
 		self._set_constraint_main(model)
 		self._set_constraint_linearisation_max(model, z)
-		#self._set_constraint_end(model)
 		model.update()
 
 	def _get_vars(self, model):

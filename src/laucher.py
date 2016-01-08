@@ -400,8 +400,8 @@ if question == 1:
     #print s.solution
     #print s.values
 elif question == 2:
-    s = SolverIteration2(g, weight)
-    #s = SolverGurobi(g)
+    #s = SolverIteration2(g, weight)
+    s = SolverGurobi(g)
     #print s.solution
     #print s.values
 
@@ -459,120 +459,130 @@ for lin in range(width):
 
             Canevas.tag_lower(rec)   
             Canevas.create_text(y +10, x +10, text=s.get_move(lin, col))
-            Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
+            #Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
 
 
-# if question == 1:
-#     pass
-# elif question == 2:
-#     t0_1 = time.time()
-#     s_1 = SolverGurobi(g)
-#     count_time_1 = time.time() - t0_1
+if question == 1:
+    pass
+elif question == 2:
+    do_PL = True
+    do_Iteration = True
 
-#     t0_2 = time.time()
-#     s_2 = SolverIteration2(g, weight)
-#     count_time_2 = time.time() - t0_2
+    s_1 = None
+    s_2 = None
 
-#     print s_1.solution
-#     print s_2.solution
+    rouge_1 = []
+    bleu_1 = []
 
-#     rouge_1 = []
-#     bleu_1 = []
+    cum_count_coup_1 = 0
+    cum_count_score_1 = 0
+    cum_count_time_1 = 0
+    rouge_2 = []
+    bleu_2 = []
 
-#     cum_count_coup_1 = 0
-#     cum_count_score_1 = 0
-#     cum_count_time_1 = 0
+    cum_count_coup_2 = 0
+    cum_count_score_2 = 0
+    cum_count_time_2 = 0
 
-#     rouge_2 = []
-#     bleu_2 = []
+    if do_PL:
+        t0_1 = time.time()
+        s_1 = SolverGurobi(g)
+        count_time_1 = time.time() - t0_1
 
-#     cum_count_red_2 = 0
-#     cum_count_blue_2 = 0
-#     cum_count_coup_2 = 0
-#     cum_count_score_2 = 0
-#     cum_count_time_2 = 0
-
-#     rep = 10
-#     for i in range(rep):
-#         initialize()
         
-#         count_red_1 = 0
-#         count_blue_1 = 0
-#         count_coup_1 = 0
-#         count_score_1 = 0
-#         #print "rep", i
-#         while True:
-#             count_score_1 -= 2
-#             count_score_1 = count_score_1 + red + blue
+
+    if do_Iteration:
+        t0_2 = time.time()
+        s_2 = SolverIteration2(g, weight)
+        count_time_2 = time.time() - t0_2
+
+        
+
+    rep = 10
+    for i in range(rep):
+        print "experience: ", i
+
+        if do_PL:
+            initialize()
             
-#             count_coup_1 += 1
-           
-#             y=int((PosX-30)/(20*zoom))
-#             x=int((PosY-30)/(20*zoom))
+            count_red_1 = 0
+            count_blue_1 = 0
+            count_coup_1 = 0
+            count_score_1 = 0
+            #print "rep", i
+            while True:
+                count_score_1 -= 2
+                count_score_1 = count_score_1 + red + blue
+                
+                count_coup_1 += 1
+               
+                y=int((PosX-30)/(20*zoom))
+                x=int((PosY-30)/(20*zoom))
 
-#             blue, red = Play(s_1, x, y)
-#             count_blue_1 += blue
-#             count_red_1 += red
+                blue, red = Play(s_1, x, y)
+                count_blue_1 += blue
+                count_red_1 += red
 
-#             #print x, y
-#             if x == nblignes-1 and y == nbcolonnes-1:
-#                 count_score_1 += 1000
-#                 #print "fini: ", count_blue, count_red
-#                 rouge_1.append(count_red_1)
-#                 bleu_1.append(count_blue_1)
-#                 cum_count_coup_1 += count_coup_1
-#                 cum_count_score_1 += count_score_1
-#                 break
+                #print x, y
+                if x == nblignes-1 and y == nbcolonnes-1:
+                    count_score_1 += 1000
+                    #print "fini: ", count_blue, count_red
+                    rouge_1.append(count_red_1)
+                    bleu_1.append(count_blue_1)
+                    cum_count_coup_1 += count_coup_1
+                    cum_count_score_1 += count_score_1
+                    break
         
         
+        if do_Iteration:
+            initialize()
+            count_red_2 = 0
+            count_blue_2 = 0
+            count_coup_2 = 0
+            count_score_2 = 0
+            #print "rep", i
+            while True:
 
-#         initialize()
-#         count_red_2 = 0
-#         count_blue_2 = 0
-#         count_coup_2 = 0
-#         count_score_2 = 0
-#         #print "rep", i
-#         while True:
+                count_score_2 -= 2
+                count_score_2 = count_score_2 + red + blue
+                
+                count_coup_2 += 1
+               
+                y=int((PosX-30)/(20*zoom))
+                x=int((PosY-30)/(20*zoom))
 
-#             count_score_2 -= 2
-#             count_score_2 = count_score_2 + red + blue
-            
-#             count_coup_2 += 1
-           
-#             y=int((PosX-30)/(20*zoom))
-#             x=int((PosY-30)/(20*zoom))
+                blue, red = Play(s_2, x, y)
+                count_blue_2 += blue
+                count_red_2 += red
 
-#             blue, red = Play(s_2, x, y)
-#             count_blue_2 += blue
-#             count_red_2 += red
-
-#             #print x, y
-#             if x == nblignes-1 and y == nbcolonnes-1:
-#                 count_score_2 += 1000
-#                 #print "fini: ", count_blue, count_red
-#                 rouge_2.append(count_red_2)
-#                 bleu_2.append(count_blue_2)
-#                 cum_count_coup_2 += count_coup_2
-#                 cum_count_score_2 += count_score_2
-#                 break
+                #print x, y
+                if x == nblignes-1 and y == nbcolonnes-1:
+                    count_score_2 += 1000
+                    #print "fini: ", count_blue, count_red
+                    rouge_2.append(count_red_2)
+                    bleu_2.append(count_blue_2)
+                    cum_count_coup_2 += count_coup_2
+                    cum_count_score_2 += count_score_2
+                    break
         
         
+    if do_PL:
+        print "######## PL ########"
+        print "BLUE: ", np.mean(bleu_1)
+        print "RED: ", np.mean(rouge_1)
+        print "Coups: ", cum_count_coup_1/float(rep)
+        print "Score: ", cum_count_score_1/float(rep)
+        print "Computing: %.2f"%count_time_1
+        print "####################"
 
-#     print "######## PL ########"
-#     print "BLUE: ", np.mean(bleu_1)
-#     print "RED: ", np.mean(rouge_1)
-#     print "Coups: ", cum_count_coup_1/float(rep)
-#     print "Score: ", cum_count_score_1/float(rep)
-#     print "Computing: %.2f"%count_time_1
-#     print "####################"
-
-#     print "#### Iteration ####"
-#     print "BLUE: ", np.mean(bleu_2)
-#     print "RED: ", np.mean(rouge_2)
-#     print "Coups: ", cum_count_coup_2/float(rep)
-#     print "Score: ", cum_count_score_2/float(rep)
-#     print "Computing: %.2f"%count_time_2
-#     print "###################"
+    if do_Iteration:
+        print "#### Iteration ####"
+        print "BLUE: ", np.mean(bleu_2)
+        print "RED: ", np.mean(rouge_2)
+        print "Coups: ", cum_count_coup_2/float(rep)
+        print "Score: ", cum_count_score_2/float(rep)
+        print "Computing: %.2f"%count_time_2
+        print "###################"
 
 
 

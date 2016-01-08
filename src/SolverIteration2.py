@@ -79,8 +79,6 @@ class SolverIteration2:
 		while True:
 			self.nouvelle_iteration()
 			
-			print self.t
-			print self.Vs[self.t-1]
 
 			# matrice binaire, 1 -> la case lin/col a deja ete calculee, 0 sinon
 			# Pour l'amelioration de Gauss Seidel	
