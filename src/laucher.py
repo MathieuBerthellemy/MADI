@@ -466,7 +466,7 @@ if question == 1:
     pass
 elif question == 2:
     do_PL = False
-    do_Iteration = True
+    do_Iteration = False
 
     s_1 = None
     s_2 = None

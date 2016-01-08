@@ -2,9 +2,21 @@ import numpy as np
 import math
 
 class SolverIteration2:
-	def __init__(self, grid, weight):
+	"""
+        ATTRIBUTES:
+            grid:
+            aleatoire:
+            gamma:
+            epsilon:
+            Vs:
+            Q_at:
+            t:
+            
+    """
+	def __init__(self, grid, weight, aleatoire = True):
 		self.grid = grid
 		self.weight = weight
+		self.aleatoire = aleatoire
 
 		self.gamma = self.compute_gamma()
 		self.epsilon = 0.4
@@ -91,6 +103,7 @@ class SolverIteration2:
 				for action, (lin_n, col_n) in neighboorhood:
 					# On calcul Q_at(s)
 					esperance = self.get_esperance_utilite(lin_n, col_n, already_computed)
+					print "esperance", esperance
 					self.Q_at[self.t][col][lin][action] = self.get_reward(lin, col) + self.gamma * esperance				
 				# Vt(s) = malin_a(Q_at(a))
 				self.Vs[self.t][lin, col] = max([0]+[value for key, value in self.Q_at[self.t][col][lin].items()])
@@ -115,17 +128,28 @@ class SolverIteration2:
 		"""
 		adjacents = self.get_adjacents(lin, col)
 		output = 0
+
+		proba_tomber_juste = None
+		proba_tomber_a_cote = None
+
+		if self.aleatoire:
+			proba_tomber_juste = (1-len(adjacents)/16)
+			proba_tomber_a_cote = 1/16
+		else:
+			proba_tomber_juste = 1
+			proba_tomber_a_cote = 0
+
 		#amelioration de Gauss Seidel
 		if already_computed[lin, col] == 0:
-			output += (1-len(adjacents)/16)*self.Vs[self.t-1][lin, col]
+			output += proba_tomber_juste*self.Vs[self.t-1][lin, col]
 		else:
-			output += (1-len(adjacents)/16)*self.Vs[self.t][lin, col]
+			output += proba_tomber_juste*self.Vs[self.t][lin, col]
 			
 		for (lin_a, col_a) in adjacents:
 			if already_computed[lin, col] == 0:
-				output += self.Vs[self.t-1][lin_a, col_a]/16
+				output += proba_tomber_a_cote*self.Vs[self.t-1][lin_a, col_a]
 			else:
-				output += self.Vs[self.t][lin_a, col_a]/16
+				output += proba_tomber_a_cote*self.Vs[self.t][lin_a, col_a]
 	
 		return output
 

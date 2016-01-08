@@ -3,7 +3,6 @@ class SolverIteration:
 
     def __init__(self, grid, weight):
         self.grid = grid
-
         # Coment appeler la fonction, a integrer dans le code
         states = self.trouverStates()
         self.solution = np.chararray((len(grid), len(grid[0])))
