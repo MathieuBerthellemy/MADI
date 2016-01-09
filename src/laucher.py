@@ -2,9 +2,10 @@
 from __future__ import division
 from Tkinter import *
 import numpy as np
-from SolverGurobi import *
+from SolverGurobiDual import *
+from SolverGurobiPrimal import *
 from SolverIteration import *
-from SolverIteration2 import *
+import numpy
 import math
 import time
 
@@ -15,7 +16,7 @@ def initialize():
 # position initiale du robot
     PosX = 20+10*zoom
     PosY = 20+10*zoom
-    for k in range(5):
+    for k in range(6):
         cost[k]=0
 # cout et affichage
     Canevas.coords(Pion,PosX -9*zoom, PosY -9*zoom, PosX +9*zoom, PosY +9*zoom)
@@ -81,7 +82,8 @@ def colordraw(g,nblignes,nbcolonnes):
                 if g[i,j]<0:
                     Canevas.create_rectangle(x, y, x+zoom*20, y+zoom*20, fill=myblack)
                     Canevas.create_rectangle(x, y, x+zoom*20, y+zoom*20, fill=myblack)
-
+                    
+    g[nblignes-1,nbcolonnes-1]=5
   
 
 def Play(selector, li, cj):
@@ -213,7 +215,7 @@ def Play(selector, li, cj):
     w.config(text='Cost = '+ str(globalcost))  
 
 def Clavier(event):
-    global PosX,PosY,cost,g, globalcost
+    global PosX,PosY,cost,g, globalcost, s
     touche = event.keysym
     cj=(PosX-30)/(20*zoom)
     li=(PosY-30)/(20*zoom)
@@ -221,8 +223,11 @@ def Clavier(event):
     # deplacement aleatoire en appuyant sur space
     if touche == 'space':
         t=np.random.randint(6)
-        lettre = ['f','g','h','j','y','u',]
-        touche=lettre[t]
+        #lettre = ['f','g','h','j','y','u',]
+        #lettre = 
+        #touche=lettre[t]
+        print s.get_move(li, cj)
+        touche = s.get_move(li, cj).lower()
     # deplacement (-2,1)
     if touche == 'y' and li>1 and cj < nbcolonnes-1 and g[li-2,cj+1]>-1:
         PosY -= zoom*20*2
@@ -321,7 +326,7 @@ alea = 1 #transitions aleatoires si alea =1 sinon mettre alea=0
 
 #taille de la grille
 nblignes=10
-nbcolonnes=15
+nbcolonnes=10
  
 globalcost=0
 
@@ -331,7 +336,7 @@ Hauteur = zoom*20*nblignes+40
  
 # valeurs de la grille
 g = np.zeros((nblignes,nbcolonnes), dtype=numpy.int)
-cost= np.zeros(5, dtype=numpy.int)
+cost= np.zeros(6, dtype=numpy.int)
 weight= np.zeros(6, dtype=numpy.int)
 
 if question == 1:
@@ -340,12 +345,14 @@ if question == 1:
     weight[2] = 20
     weight[3] = 30
     weight[4] = 40
+    weight[5] = 998
 elif question == 2:
-    weight[0] = 2
+    weight[0] = 0
     weight[1] = 0
-    weight[2] = -1
-    weight[3] = -1
+    weight[2] = 1
+    weight[3] = 1
     weight[4] = 0
+    weight[5] = 1000
 
 # def des couleurs
 myred="#D20B18"
@@ -396,24 +403,16 @@ colordraw(g,nblignes,nbcolonnes)
 
 print g
 if question == 1:
-    s = SolverIteration(g, weight)
+    s = SolverIteration2(g, weight)
     #print s.solution
     #print s.values
 elif question == 2:
-    #s = SolverIteration2(g, weight)
-    s = SolverGurobi(g)
+    s = SolverGurobiDual(g, weight)
+    #s = SolverGurobiPrimal(g, weight)
     #print s.solution
     #print s.values
 
- 
 
-def min_except(matrix, *forbidden):
-    output = 9999999
-    for x in range(matrix):
-        for y in range(matrix[0]):
-            if matrix[x][y] not in forbidden:
-                output = min(output, matrix[x][y])
-    return output
 
 def echelle(c1, c2, c3, val, min_val, max_val):
     r1, g1, b1 = c1[0], c1[1], c1[2]
@@ -427,22 +426,21 @@ def echelle(c1, c2, c3, val, min_val, max_val):
     middle = (max_val + min_val)/2
 
     if val < middle:
-        alpha = 1 - (val - min_val) / (middle - min_val)
-        beta = val / (middle - min_val)
+        alpha = 1 - (val - min_val) / max((middle - min_val), 1)
+        beta = val / max((middle - min_val), 1)
 
         r = int(r1 * alpha + r2 * beta)
         g = int(g1 * alpha + g2 * beta)
         b = int(b1 * alpha + b2 * beta)
     else:
-        alpha = 1 - (val - middle) / (max_val - middle)
-        beta = (val - middle) /  (max_val - middle)
+        alpha = 1 - (val - middle) / max((max_val - middle), 1)
+        beta = (val - middle) /   max((max_val - middle), 1)
 
         r = int(r2 * alpha + r3 * beta)
         g = int(g2 * alpha + g3 * beta)
         b = int(b2 * alpha + b3 * beta)
 
-    return (r, g, b)
-
+    return (min(r, 254), min(g, 254), min(b, 254))
 
 for lin in range(width):
     for col in range(height):
@@ -450,23 +448,25 @@ for lin in range(width):
         x = lin*20*zoom+20
             
         
-        if g[lin][col] != -1:
+        if g[lin][col] != -1 :
 
-            (red, green, blue) = echelle((90, 90, 200), (200, 180, 0), (254, 90, 90), int(s.values[lin][col]), int(s.values.min()), int(s.values.max()))
-
+            (red, green, blue) = echelle((92, 84, 164), (252, 254, 180), (175, 16, 71), int(s.values[lin][col]), int(np.nanmin(s.values)), int(np.nanmax(s.values)))
+            
+            # print s.values[lin][col], min_except(s.values, -1), s.values.max()
+            # print red, green, blue
             case_color = "#%02x%02x%02x"%(red, green, blue) 
             rec = Canevas.create_rectangle(y, x, y+zoom*20, x+zoom*20, fill=case_color)
 
             Canevas.tag_lower(rec)   
             Canevas.create_text(y +10, x +10, text=s.get_move(lin, col))
-            #Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
+            Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
 
 
 if question == 1:
     pass
 elif question == 2:
-    do_PL = False
-    do_Iteration = False
+    do_PL_dual = True
+    do_PL_primal = False
 
     s_1 = None
     s_2 = None
@@ -484,25 +484,25 @@ elif question == 2:
     cum_count_score_2 = 0
     cum_count_time_2 = 0
 
-    if do_PL:
+    if do_PL_dual:
         t0_1 = time.time()
-        s_1 = SolverGurobi(g)
+        s_1 = SolverGurobiDual(g, weight)
         count_time_1 = time.time() - t0_1
 
         
 
-    if do_Iteration:
+    if do_PL_primal:
         t0_2 = time.time()
-        s_2 = SolverIteration2(g, weight)
+        s_2 = SolverIteration(g, weight)
         count_time_2 = time.time() - t0_2
 
         
 
-    rep = 10
+    rep = 1000
     for i in range(rep):
         print "experience: ", i
 
-        if do_PL:
+        if do_PL_dual:
             initialize()
             
             count_red_1 = 0
@@ -534,7 +534,7 @@ elif question == 2:
                     break
         
         
-        if do_Iteration:
+        if do_PL_primal:
             initialize()
             count_red_2 = 0
             count_blue_2 = 0
@@ -566,7 +566,7 @@ elif question == 2:
                     break
         
         
-    if do_PL:
+    if do_PL_dual:
         print "######## PL ########"
         print "BLUE: ", np.mean(bleu_1)
         print "RED: ", np.mean(rouge_1)
@@ -575,7 +575,7 @@ elif question == 2:
         print "Computing: %.2f"%count_time_1
         print "####################"
 
-    if do_Iteration:
+    if do_PL_primal:
         print "#### Iteration ####"
         print "BLUE: ", np.mean(bleu_2)
         print "RED: ", np.mean(rouge_2)

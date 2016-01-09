@@ -1,9 +1,10 @@
 import numpy
+from tools import compute_gamma
 import numpy as np
 from gurobipy import *
 import math
 
-class SolverGurobi:
+class SolverGurobiPrimal:
 	"""
 		ATTRIBUTES
 			- grid, np.matrix NxM
@@ -11,46 +12,41 @@ class SolverGurobi:
 			- solution
 			- values
 	"""
-	def __init__(self, grid, alpha=0.5):
-		self.alpha = alpha # part du but pour arriver a destination
+	def __init__(self, grid, weight):
 		self.grid = grid
+		self.weight = weight
 		self.width = len(grid)
 		self.height = len(grid[0])
-		self.gamma = min(self._compute_gamma(), 0.8)
-		print self.gamma
+		self.gamma =  compute_gamma(grid.shape[0], grid.shape[1], 1000)
+		#self.gamma = 0.7
+		print "gamma: ", self.gamma
 		self._solve()
 
-
-	def _compute_gamma(self):
-		D = self.width+self.height
-
-		output = 0.5
-		output_bounds = (0, 1)
-
-		window = (5, 10)
-		while True:
-
-			tmp = self._get_R(self.width-1, self.height-1)
-			for i in range(int(D/4)):
-				tmp = math.pow(tmp, output)
-		
-			# Si en dessous de la fenetre
-			if tmp < window[0]:
-				output_bounds = (output, output_bounds[1])
-
-			# S au dessus de la fenetre
-			elif tmp > window[1]:
-				output_bounds = (output_bounds[0], output)
-			# Si dans la fenetre
-			else:
-				break
-
-			output = (output_bounds[0] + output_bounds[1])/2
-			#print output, ": ", output_bounds, ", ", tmp
-
-		#print "gamma = ", output
+	def _get_matrice_recompense_rouge(self):
+		output = np.where(self.grid==3, 1, 0)
+		output[self.grid.shape[0]-1, self.grid.shape[1]-1] = self._get_R(self.grid.shape[0]-1, self.grid.shape[1]-1)
 		return output
 
+	def _get_matrice_recompense_bleu(self):
+		output = np.where(self.grid==2, 1, 0)
+		output[self.grid.shape[0]-1, self.grid.shape[1]-1] = self._get_R(self.grid.shape[0]-1, self.grid.shape[1]-1)
+		return output
+
+	def get_multiobjectif_expression(self, matrice):
+		output = LinExpr()
+		for (x, y) in self._get_S():
+			# if x == self.grid.shape[0]-1 and y == self.grid.shape[1]-1:
+			# 	pass
+			# else:
+			for action, (x_n, y_n) in self._get_neighborhood(x, y):
+				adjacents = self._get_adjacents(x_n, y_n)
+				tmp = -2 
+				tmp += matrice[x_n, y_n] * (1 - len(adjacents)/16.0)
+				#print "(", x, y, ")", matrice[x_n, y_n], "*", (1 - len(adjacents)/16.0), "=", tmp, action
+				for (x_a, y_a) in adjacents:
+					tmp += 1/16.0 * matrice[x_a, y_a]
+				output.add(self.X[x][y][action], tmp)
+		return output
 
 	def get_move(self, x, y):
 		return self.solution[x][y]
@@ -62,7 +58,7 @@ class SolverGurobi:
 		self.solution, self.values = self._convert(model.getVars())
 		
 
-	def get_S(self):
+	def _get_S(self):
 		"""
 			retourne une liste des coordonnees de tous les etats possible
 		"""
@@ -74,7 +70,6 @@ class SolverGurobi:
 		return output
 
 	def _convert(self, vars):
-
 		output1 = np.chararray((self.width, self.height))
 		output2 = np.zeros((self.width, self.height))
 		last_value = 0
@@ -82,7 +77,7 @@ class SolverGurobi:
 			for y in range(self.height):
 				if self.grid[x][y] == -1:
 					output1[x][y] = '_'
-					output2[x][y] = -1
+					output2[x][y] = None
 				else:
 					output2[x][y] = self.V[x][y].x
 					
@@ -96,16 +91,7 @@ class SolverGurobi:
 		return output1, output2
 
 	def _get_R(self, x, y):
-		output = -1
-		if self._is_blue(x, y):
-			output = -1
-		elif self._is_red(x, y):
-			output = -1
-		elif x == self.width-1 and y == self.height-1:
-			output = 998
-		else:
-			output = -2
-		return output
+		return self.weight[self.grid[x, y]]
 
 	def _is_blue(self, x, y):
 		return self.grid[x][y] == 2
@@ -142,16 +128,19 @@ class SolverGurobi:
 		model.addConstr(self.V[self.width-1][self.height-1], GRB.EQUAL, 1000)
 
 	def _set_constraint_main(self, model):
-		for (x, y) in self.get_S():
-			neighborhood = self._get_neighborhood(x, y)
-			for action, (x_n, y_n) in neighborhood:
-				tmp = LinExpr()
-				adjacents = self._get_adjacents(x_n, y_n)
-				tmp.add(self.V[x_n][y_n], 1.0-(len(adjacents)/16.0))
-				for (x2_n, y2_n) in adjacents:
-					tmp.add(self.V[x2_n][y2_n], 1.0/16.0)
-				
-				model.addConstr(self.V[x][y], GRB.GREATER_EQUAL, self._get_R(x, y) + self.gamma * tmp)
+		for (x, y) in self._get_S():
+			if x == self.grid.shape[0]-1 and y == self.grid.shape[1]-1:
+				model.addConstr(self.V[self.grid.shape[0]-1][self.grid.shape[1]-1], GRB.EQUAL, 1000.0)
+			else:
+				neighborhood = self._get_neighborhood(x, y)
+				for action, (x_n, y_n) in neighborhood:
+					tmp = LinExpr()
+					adjacents = self._get_adjacents(x_n, y_n)
+					tmp.add(self.V[x_n][y_n], 1.0-(len(adjacents)/16.0))
+					for (x2_n, y2_n) in adjacents:
+						tmp.add(self.V[x2_n][y2_n], 1.0/16.0)
+					
+					model.addConstr(self.V[x][y], GRB.GREATER_EQUAL, self._get_R(x, y) + self.gamma * tmp, "(%d, %d)->(%d, %d)"%(x, y, x_n, y_n))
 
 	def _set_constraint_linearisation_max(self, model, z):
 		tmp_blue = LinExpr();
@@ -193,15 +182,17 @@ class SolverGurobi:
 		return z, V
 
 	def _set_objectif(self, model, z):
-		tmp = LinExpr()
 		
-		for x in range(self.width):
-			for y in range(self.height):
-				if self.grid[x][y] != -1:
-					tmp.add(self.V[x][y], self.alpha)
+		# for x in range(self.width):
+		# 	for y in range(self.height):
+		# 		if self.grid[x][y] != -1:
+		# 			tmp.add(self.V[x][y], 1)
 
-		tmp.add(z, -(1-self.alpha))
+		# tmp.add(z, -1)
 
-		model.setObjective(tmp, GRB.MINIMIZE)
+		tmp_blue = self.get_multiobjectif_expression(self._get_matrice_recompense_bleu())
+		tmp_red = self.get_multiobjectif_expression(self._get_matrice_recompense_rouge())
+		
+		model.setObjective((tmp_blue+tmp_red)/2, GRB.MINIMIZE)
 		model.update()
 
