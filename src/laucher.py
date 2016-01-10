@@ -323,8 +323,8 @@ zoom = 2
 alea = 1 #transitions aleatoires si alea =1 sinon mettre alea=0
 
 #taille de la grille
-nblignes=10
-nbcolonnes=10
+nblignes=5
+nbcolonnes=15
  
 globalcost=0
 
@@ -405,8 +405,9 @@ if question == 1:
     #print s.solution
     #print s.values
 elif question == 2:
-    s = SolverGurobiDual(g, weight)
-    #s = SolverGurobiPrimal(g, weight)
+    #s = SolverGurobiDual(g, weight)
+    #s = SolverGurobiDual(g, weight)
+    s = SolverGurobiPrimal(g, weight)
     #print s.solution
     #print s.values
 
@@ -453,18 +454,18 @@ for lin in range(width):
             # print s.values[lin][col], min_except(s.values, -1), s.values.max()
             # print red, green, blue
             case_color = "#%02x%02x%02x"%(red, green, blue) 
-            rec = Canevas.create_rectangle(y, x, y+zoom*20, x+zoom*20, fill=case_color)
+            #rec = Canevas.create_rectangle(y, x, y+zoom*20, x+zoom*20, fill=case_color)
 
-            Canevas.tag_lower(rec)   
-            Canevas.create_text(y +10, x +10, text=s.get_move(lin, col))
+            #Canevas.tag_lower(rec)   
+            #Canevas.create_text(y +10, x +10, text=s.get_move(lin, col))
             #Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
 
 
 if question == 1:
     pass
 elif question == 2:
-    do_PL_dual = False
-    do_PL_primal = False
+    do_PL_dual = True
+    do_PL_primal = True
 
     s_1 = None
     s_2 = None
@@ -490,99 +491,106 @@ elif question == 2:
 
     if do_PL_primal:
         t0_2 = time.time()
-        s_2 = SolverGurobiPrimal(g, weight)
+        s_2 = SolverGurobiDual(g, weight, False)
         count_time_2 = time.time() - t0_2
 
         
 
     rep = 1000
-    for i in range(rep):
-        print "experience: ", i
+    file1 = open("data1.csv", "w")
+    file2 = open("data2.csv", "w")
+    
+    if do_PL_primal or do_PL_dual:
+        for i in range(rep):
+            print "experience: ", i
 
-        if do_PL_dual:
-            initialize()
+            if do_PL_dual:
+                initialize()
+                
+                count_red_1 = 0
+                count_blue_1 = 0
+                count_coup_1 = 0
+                count_score_1 = 0
+                #print "rep", i
+                while True:
+                    count_score_1 -= 2
+                    count_score_1 = count_score_1 + red + blue
+                    
+                    count_coup_1 += 1
+                   
+                    y=int((PosX-30)/(20*zoom))
+                    x=int((PosY-30)/(20*zoom))
+
+                    blue, red = Play(s_1, x, y)
+                    count_blue_1 += blue
+                    count_red_1 += red
+
+                    #print x, y
+                    if x == nblignes-1 and y == nbcolonnes-1:
+                        count_score_1 += 1000
+                        #print "fini: ", count_blue, count_red
+                        rouge_1.append(count_red_1)
+                        bleu_1.append(count_blue_1)
+                        cum_count_coup_1 += count_coup_1
+                        cum_count_score_1 += count_score_1
+                        break
+                file1.write("%d; %d\n"%(count_red_1, count_blue_1)) 
             
-            count_red_1 = 0
-            count_blue_1 = 0
-            count_coup_1 = 0
-            count_score_1 = 0
-            #print "rep", i
-            while True:
-                count_score_1 -= 2
-                count_score_1 = count_score_1 + red + blue
-                
-                count_coup_1 += 1
-               
-                y=int((PosX-30)/(20*zoom))
-                x=int((PosY-30)/(20*zoom))
+            
+            if do_PL_primal:
+                initialize()
+                count_red_2 = 0
+                count_blue_2 = 0
+                count_coup_2 = 0
+                count_score_2 = 0
+                #print "rep", i
+                while True:
 
-                blue, red = Play(s_1, x, y)
-                count_blue_1 += blue
-                count_red_1 += red
+                    count_score_2 -= 2
+                    count_score_2 = count_score_2 + red + blue
+                    
+                    count_coup_2 += 1
+                   
+                    y=int((PosX-30)/(20*zoom))
+                    x=int((PosY-30)/(20*zoom))
 
-                #print x, y
-                if x == nblignes-1 and y == nbcolonnes-1:
-                    count_score_1 += 1000
-                    #print "fini: ", count_blue, count_red
-                    rouge_1.append(count_red_1)
-                    bleu_1.append(count_blue_1)
-                    cum_count_coup_1 += count_coup_1
-                    cum_count_score_1 += count_score_1
-                    break
-        
-        
+                    blue, red = Play(s_2, x, y)
+                    count_blue_2 += blue
+                    count_red_2 += red
+
+                    #print x, y
+                    if x == nblignes-1 and y == nbcolonnes-1:
+                        count_score_2 += 1000
+                        #print "fini: ", count_blue, count_red
+                        rouge_2.append(count_red_2)
+                        bleu_2.append(count_blue_2)
+                        cum_count_coup_2 += count_coup_2
+                        cum_count_score_2 += count_score_2
+                        break
+                file2.write("%d; %d\n"%(count_red_2, count_blue_2)) 
+            
+            
+        if do_PL_dual:
+            print "######## PL ########"
+            print "BLUE: ", np.mean(bleu_1)
+            print "RED: ", np.mean(rouge_1)
+            print "Coups: ", cum_count_coup_1/float(rep)
+            print "Score: ", cum_count_score_1/float(rep)
+            print "Computing: %.2f"%count_time_1
+            print "####################"
+
         if do_PL_primal:
-            initialize()
-            count_red_2 = 0
-            count_blue_2 = 0
-            count_coup_2 = 0
-            count_score_2 = 0
-            #print "rep", i
-            while True:
-
-                count_score_2 -= 2
-                count_score_2 = count_score_2 + red + blue
-                
-                count_coup_2 += 1
-               
-                y=int((PosX-30)/(20*zoom))
-                x=int((PosY-30)/(20*zoom))
-
-                blue, red = Play(s_2, x, y)
-                count_blue_2 += blue
-                count_red_2 += red
-
-                #print x, y
-                if x == nblignes-1 and y == nbcolonnes-1:
-                    count_score_2 += 1000
-                    #print "fini: ", count_blue, count_red
-                    rouge_2.append(count_red_2)
-                    bleu_2.append(count_blue_2)
-                    cum_count_coup_2 += count_coup_2
-                    cum_count_score_2 += count_score_2
-                    break
-        
-        
-    if do_PL_dual:
-        print "######## PL ########"
-        print "BLUE: ", np.mean(bleu_1)
-        print "RED: ", np.mean(rouge_1)
-        print "Coups: ", cum_count_coup_1/float(rep)
-        print "Score: ", cum_count_score_1/float(rep)
-        print "Computing: %.2f"%count_time_1
-        print "####################"
-
-    if do_PL_primal:
-        print "#### Iteration ####"
-        print "BLUE: ", np.mean(bleu_2)
-        print "RED: ", np.mean(rouge_2)
-        print "Coups: ", cum_count_coup_2/float(rep)
-        print "Score: ", cum_count_score_2/float(rep)
-        print "Computing: %.2f"%count_time_2
-        print "###################"
+            print "#### Iteration ####"
+            print "BLUE: ", np.mean(bleu_2)
+            print "RED: ", np.mean(rouge_2)
+            print "Coups: ", cum_count_coup_2/float(rep)
+            print "Score: ", cum_count_score_2/float(rep)
+            print "Computing: %.2f"%count_time_2
+            print "###################"
 
 
-
+    file1.close()
+    file2.close()
 
 Mafenetre.mainloop()
 

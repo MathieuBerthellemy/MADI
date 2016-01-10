@@ -15,7 +15,8 @@ class SolverGurobiDual(SolverGurobi):
 
 	
 
-	def __init__(self, grid, weight):
+	def __init__(self, grid, weight, multiobjectif = True):
+		self.multiobjectif = multiobjectif
 		SolverGurobi.__init__(self, grid, weight)
 		self.solve()
 
@@ -77,8 +78,8 @@ class SolverGurobiDual(SolverGurobi):
 			X: 
 		"""
 		self.z = model.addVar(vtype=GRB.CONTINUOUS, lb=-99999999, name="z")
-		self.X = [[{} for x in range(self.grid.shape[0])] for y in range(self.grid.shape[1])]
-		self.D = [[{} for x in range(self.grid.shape[0])] for y in range(self.grid.shape[1])]
+		self.X = [[{} for x in range(self.grid.shape[1])] for y in range(self.grid.shape[0])]
+		self.D = [[{} for x in range(self.grid.shape[1])] for y in range(self.grid.shape[0])]
 		
 		for (x, y) in self.get_S():
 			for action in self.get_all_action():
@@ -92,8 +93,10 @@ class SolverGurobiDual(SolverGurobi):
 		model.update()
 
 	def set_constraints(self, model):
+		if self.multiobjectif:
+			self.set_constraint_linearisation(model)
+
 		self.set_constraint_main(model)
-		self.set_constraint_linearisation(model)
 		self.set_constraints_d(model)
 		model.update()
 
@@ -133,7 +136,19 @@ class SolverGurobiDual(SolverGurobi):
 		model.addConstr(tmp_red, GRB.GREATER_EQUAL, self.z)
 
 	def set_objectif(self, model):
-		tmp = LinExpr()
+		if self.multiobjectif:
+			self.set_objectif_multi_objectif(model)
+		else:
+			self.set_objectif_mono_objectif(model)
+
+	def set_objectif_multi_objectif(self, model):
 		model.setObjective(self.z, GRB.MAXIMIZE)
+		model.update()
+
+	def set_objectif_mono_objectif(self, model):
+		tmp_blue = self.get_multiobjectif_expression(self.get_matrice_recompense_bleu())
+		tmp_red = self.get_multiobjectif_expression(self.get_matrice_recompense_rouge())
+		
+		model.setObjective((tmp_red+tmp_blue)/2.0, GRB.MAXIMIZE)
 		model.update()
 
