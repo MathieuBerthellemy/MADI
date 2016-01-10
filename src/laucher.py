@@ -2,9 +2,7 @@
 from __future__ import division
 from Tkinter import *
 import numpy as np
-from SolverGurobiDual import *
-from SolverGurobiPrimal import *
-from SolverIteration import *
+from Solver_PDM import *
 import numpy
 import math
 import time
@@ -459,13 +457,13 @@ for lin in range(width):
 
             Canevas.tag_lower(rec)   
             Canevas.create_text(y +10, x +10, text=s.get_move(lin, col))
-            Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
+            #Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
 
 
 if question == 1:
     pass
 elif question == 2:
-    do_PL_dual = True
+    do_PL_dual = False
     do_PL_primal = False
 
     s_1 = None
@@ -489,11 +487,10 @@ elif question == 2:
         s_1 = SolverGurobiDual(g, weight)
         count_time_1 = time.time() - t0_1
 
-        
 
     if do_PL_primal:
         t0_2 = time.time()
-        s_2 = SolverIteration(g, weight)
+        s_2 = SolverGurobiPrimal(g, weight)
         count_time_2 = time.time() - t0_2
 
         
