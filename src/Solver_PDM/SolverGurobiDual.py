@@ -127,6 +127,7 @@ class SolverGurobiDual(SolverGurobi):
 			tmp.add(tmp2, -self.gamma)
 
 			model.addConstr(tmp, GRB.EQUAL, 1/2.0)
+			#model.addConstr(tmp, GRB.EQUAL, int(x == 0 and y == 0))
 		
 	def set_constraint_linearisation(self, model):
 		tmp_blue = self.get_multiobjectif_expression(self.get_matrice_recompense_bleu())

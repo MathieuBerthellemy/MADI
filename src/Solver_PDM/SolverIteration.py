@@ -1,136 +1,152 @@
 import numpy as np
+import math
+import time
+
 class SolverIteration:
 
-    def __init__(self, grid, weight):
+    def __init__(self, grid, weight, alea):
         self.grid = grid
+        self.width = len(grid)
+        self.height = len(grid[0])
         # Coment appeler la fonction, a integrer dans le code
         states = self.trouverStates()
-        self.solution = np.chararray((len(grid), len(grid[0])))
-        solution = self.iterationValeur(states, weight, 0.5, 0.9)
+
+        self.alea = alea
+
+        tResMoyen = 0
+        iteMoyenne = 0
+        
+        self.solution, iterations = self.iterationValeur(states, weight, 0.9, 0.1)
+        
+        print "nombre d'iterations: ", iterations 
+       
 
 
-        for i in range(self.grid.shape[0]):
-            for j in range(self.grid.shape[1]):
-                if (i, j) in states:
-                    self.solution[i, j] = solution[states.index((i, j))]
-                else:
-                    self.solution[i, j] = "_"
 
+    def trouverAdjacentsQ1(self, x, y):
+        return []
 
 
     # Renvoie sous forme de liste de cases les cases adjacentes a la case en question
     # Arguments : g = la matrice, x et y = coordonnees du point
     def trouverAdjacents(self, x, y):
-        g = self.grid
-        nombreAdjacents = 0
-        adjacents = []
-        # Coin en haut a gauche
-        if x == 0 and y == 0:
-            if g[0,1] > -1:
-                adjacents.append((0, 1))
-            if g[1,0] > -1:
-                adjacents.append((1, 0))
-            if g[1,1] > -1:
-                adjacents.append((1, 1))
 
-        # Coin en haut a droite
-        elif x == 0 and y == g.shape[1] - 1:
-            if g[0, y - 1] > -1:
-                adjacents.append((0, y - 1))
-            if g[1, y - 1] > -1:
-                adjacents.append((1, y - 1))
-            if g[1, y] > -1:
-                adjacents.append((1, y))
+        output = [(x+x2, y+y2) for x2 in [-1, 0, 1] for y2 in [-1, 0, 1] if (x+x2 >= 0 and y+y2 >= 0 and x+x2 < len(self.grid) and y+y2 < len(self.grid[0])) and not(x2 == 0 and y2 == 0)]
+        for i, (x3, y3) in reversed(list(enumerate(output))):
+            if self.grid[x3][y3] == -1:
+                output.pop(i)
 
-        # Coin en bas a gauche
-        elif x == g.shape[0] - 1 and y == 0:
-            if g[x - 1, 0] > -1:
-                adjacents.append((x - 1, 0))
-            if g[x - 1, 1] > -1:
-                adjacents.append((x - 1, 1))
-            if g[x, 1] > -1:
-                adjacents.append((x, 1))
-        # Coin en bas a droite
-        elif x == g.shape[0] - 1 and y == g.shape[1] - 1:
-            if g[x - 1, y] > -1:
-                adjacents.append((x - 1, y))
-            if g[x, y - 1] > -1:
-                adjacents.append((x, y - 1))
-            if g[x - 1, y - 1] > -1:
-                adjacents.append((x - 1, y - 1))
-        # Ligne du haut
-        elif x == 0:
-            if g[x, y + 1] > -1:
-                adjacents.append((x, y + 1))
-            if g[x, y - 1] > -1:
-                adjacents.append((x, y - 1))
-            if g[x + 1, y] > -1:
-                adjacents.append((x + 1, y))
-            if g[x + 1, y - 1] > -1:
-                adjacents.append((x + 1, y - 1))
-            if g[x + 1, y + 1] > -1:
-                adjacents.append((x + 1, y + 1))
+        return output
+        # g = self.grid
+        # adjacents = []
+        # # Coin en haut a gauche
+        # if x == 0 and y == 0:
+        #     if g[x,y + 1] > -1:
+        #         adjacents.append((x, y + 1))
+        #     if g[x + 1, y] > -1:
+        #         adjacents.append((x + 1, y))
+        #     if g[x + 1, y + 1] > -1:
+        #         adjacents.append((x + 1, y + 1))
+        #
+        # # Coin en haut a droite
+        # elif x == 0 and y == g.shape[1] - 1:
+        #     if g[x, y - 1] > -1:
+        #         adjacents.append((x, y - 1))
+        #     if g[x + 1, y - 1] > -1:
+        #         adjacents.append((x + 1, y - 1))
+        #     if g[x + 1, y] > -1:
+        #         adjacents.append((x + 1, y))
+        #
+        # # Coin en bas a gauche
+        # elif x == g.shape[0] - 1 and y == 0:
+        #     if g[x - 1, y] > -1:
+        #         adjacents.append((x - 1, y))
+        #     if g[x - 1, y + 1] > -1:
+        #         adjacents.append((x - 1, y + 1))
+        #     if g[x, y + 1] > -1:
+        #         adjacents.append((x, y + 1))
+        #
+        # # Coin en bas a droite
+        # elif x == g.shape[0] - 1 and y == g.shape[1] - 1:
+        #     if g[x - 1, y] > -1:
+        #         adjacents.append((x - 1, y))
+        #     if g[x - 1, y - 1] > -1:
+        #         adjacents.append((x - 1, y - 1))
+        #     if g[x, y - 1] > -1:
+        #         adjacents.append((x, y - 1))
+        #
+        # # Ligne du haut
+        # elif x == 0:
+        #     if g[x, y + 1] > -1:
+        #         adjacents.append((x, y + 1))
+        #     if g[x, y - 1] > -1:
+        #         adjacents.append((x, y - 1))
+        #     if g[x + 1, y] > -1:
+        #         adjacents.append((x + 1, y))
+        #     if g[x + 1, y - 1] > -1:
+        #         adjacents.append((x + 1, y - 1))
+        #     if g[x + 1, y + 1] > -1:
+        #         adjacents.append((x + 1, y + 1))
+        #
+        # # Ligne du bas
+        # elif x == g.shape[0] - 1:
+        #     if g[x, y + 1] > -1:
+        #         adjacents.append((x, y + 1))
+        #     if g[x, y - 1] > -1:
+        #         adjacents.append((x, y - 1))
+        #     if g[x - 1, y] > -1:
+        #         adjacents.append((x - 1, y))
+        #     if g[x - 1, y - 1] > -1:
+        #         adjacents.append((x - 1, y - 1))
+        #     if g[x - 1, y + 1] > -1:
+        #         adjacents.append((x - 1, y + 1))
+        #
+        # # Ligne de la gauche
+        # elif y == 0:
+        #     if g[x + 1, y] > -1:
+        #         adjacents.append((x + 1, y))
+        #     if g[x - 1, y] > -1:
+        #         adjacents.append((x - 1, y))
+        #     if g[x, y + 1] > -1:
+        #         adjacents.append((x, y + 1))
+        #     if g[x + 1, y + 1] > -1:
+        #         adjacents.append((x + 1, y + 1))
+        #     if g[x - 1, y + 1] > -1:
+        #         adjacents.append((x - 1, y + 1))
+        #
+        # # Ligne de la droite
+        # elif y == g.shape[1] - 1:
+        #     if g[x + 1, y] > -1:
+        #         adjacents.append((x + 1, y))
+        #     if g[x - 1, y] > -1:
+        #         adjacents.append((x - 1, y))
+        #     if g[x, y - 1] > -1:
+        #         adjacents.append((x, y - 1))
+        #     if g[x + 1, y - 1] > -1:
+        #         adjacents.append((x + 1, y - 1))
+        #     if g[x - 1, y - 1] > -1:
+        #         adjacents.append((x - 1, y - 1))
+        #
+        # # Toutes les autres cases
+        # else:
+        #     if g[x + 1, y] > -1:
+        #         adjacents.append((x + 1, y))
+        #     if g[x - 1, y] > -1:
+        #         adjacents.append((x - 1, y))
+        #     if g[x, y - 1] > -1:
+        #         adjacents.append((x, y - 1))
+        #     if g[x, y + 1] > -1:
+        #         adjacents.append((x, y + 1))
+        #     if g[x + 1, y - 1] > -1:
+        #         adjacents.append((x + 1, y - 1))
+        #     if g[x + 1, y + 1] > -1:
+        #         adjacents.append((x + 1, y + 1))
+        #     if g[x - 1, y - 1] > -1:
+        #         adjacents.append((x - 1, y - 1))
+        #     if g[x - 1, y + 1] > -1:
+        #         adjacents.append((x - 1, y + 1))
 
-        # Ligne du bas
-        elif x == g.shape[0] - 1:
-            adjacents.extend([(x, y + 1), (x, y - 1), (x - 1, y), (x - 1, y - 1), (x - 1, y + 1)])
-            if g[x, y + 1] > -1:
-                adjacents.append((x, y + 1))
-            if g[x, y - 1] > -1:
-                adjacents.append((x, y - 1))
-            if g[x - 1, y] > -1:
-                adjacents.append((x - 1, y))
-            if g[x - 1, y - 1] > -1:
-                adjacents.append((x - 1, y - 1))
-            if g[x - 1, y + 1] > -1:
-                adjacents.append((x - 1, y + 1))
-                             
-        # Ligne de la gauche
-        elif y == 0:
-            if g[x + 1, y] > -1:
-                adjacents.append((x + 1, y))
-            if g[x - 1, y] > -1:
-                adjacents.append((x - 1, y))
-            if g[x, y + 1] > -1:
-                adjacents.append((x, y + 1))
-            if g[x + 1, y + 1] > -1:
-                adjacents.append((x + 1, y + 1))
-            if g[x - 1, y + 1] > -1:
-                adjacents.append((x - 1, y + 1))
-                             
-        # Ligne de la droite
-        elif y == g.shape[1] - 1:
-            if g[x + 1, y] > -1:
-                adjacents.append((x + 1, y))
-            if g[x - 1, y] > -1:
-                adjacents.append((x - 1, y))
-            if g[x, y - 1] > -1:
-                adjacents.append((x, y - 1))
-            if g[x + 1, y - 1] > -1:
-                adjacents.append((x + 1, y - 1))
-            if g[x - 1, y - 1] > -1:
-                adjacents.append((x - 1, y - 1))
-
-        # Toutes les autres cases
-        else:
-            if g[x + 1, y] > -1:
-                adjacents.append((x + 1, y))
-            if g[x - 1, y] > -1:
-                adjacents.append((x - 1, y))
-            if g[x, y - 1] > -1:
-                adjacents.append((x, y - 1))
-            if g[x + 1, y - 1] > -1:
-                adjacents.append((x + 1, y - 1))
-            if g[x - 1, y - 1] > -1:
-                adjacents.append((x - 1, y - 1))
-            if g[x + 1, y + 1] > -1:
-                adjacents.append((x + 1, y + 1))
-            if g[x, y + 1] > -1:
-                adjacents.append((x, y + 1))
-            if g[x - 1, y + 1] > -1:
-                adjacents.append((x - 1, y + 1))
-
-        return adjacents
+        #return adjacents
 
 
     #def bellman(g, x, y, poids, gamma):
@@ -229,6 +245,8 @@ class SolverIteration:
         valeurs = [np.zeros(g.shape)]
         Q_t_a = []
         t = 0
+        val1 = 0
+        val2 = 0
         while 1:
             t = t+1
             Q_t_a.append(np.zeros((len(states), 8)))
@@ -237,29 +255,49 @@ class SolverIteration:
                 actions = self.trouverActions(states[abcisse])
                 for ordonnee in range(len(actions)):
                     caseSuivante = self.trouverCaseSuivante(states[abcisse], actions[ordonnee])
-                    casesAdjacentes = self.trouverAdjacents(caseSuivante[0], caseSuivante[1])
-                    somme = (1 - len(casesAdjacentes)) * valeurs[t-1][caseSuivante[0], caseSuivante[1]] / 16
+                    
+                    casesAdjacentes = None
+                    if self.alea:
+                        casesAdjacentes = self.trouverAdjacents(caseSuivante[0], caseSuivante[1])
+                    else:
+                        casesAdjacentes = self.trouverAdjacentsQ1(caseSuivante[0], caseSuivante[1])
+                    
+
+                    if valeurs[t][caseSuivante[0], caseSuivante[1]] != 0:
+                        val1 = valeurs[t][caseSuivante[0], caseSuivante[1]]
+                    else:
+                        val1 = valeurs[t-1][caseSuivante[0], caseSuivante[1]]
+                    somme = (1 - len(casesAdjacentes)/16.0) * val1
                     for case in casesAdjacentes:
-                        somme += valeurs[t-1][case[0], case[1]] / 16
-                    Q_t_a[t-1][abcisse][ordonnee] = -rewards[g[states[abcisse][0], states[abcisse][1]]] - 1 + gamma * (somme)
+                        if valeurs[t][case[0], case[1]] != 0:
+                            val2 = valeurs[t][case[0], case[1]]
+                        else:
+                            val2 = valeurs[t-1][case[0], case[1]]
+                        somme += val2/16.0
+                    Q_t_a[t-1][abcisse][ordonnee] = - rewards[g[states[abcisse][0], states[abcisse][1]]] - 1 + gamma * somme
 
                 valeurs[t][states[abcisse][0], states[abcisse][1]] = Q_t_a[t-1][abcisse].max()
             self.values = valeurs[t]
-            valeurs_soustraction = valeurs[t] - valeurs[t-1]
+            valeurs_soustraction = abs(valeurs[t] - valeurs[t-1])/(valeurs[t]+1)
             if valeurs_soustraction.max() < epsilon:
                 break
                     
-        meilleuresActions = []
-        for abcisse in range(len(states)):
-            meilleureRecompense = -9999
-            meilleureAction = "_"
-            actions = self.trouverActions(states[abcisse])
-            for ordonnee in range(len(actions)):
-                if Q_t_a[t - 1][abcisse][ordonnee] > meilleureRecompense:
-                    meilleureAction = actions[ordonnee]
-                    meilleureRecompense = Q_t_a[t - 1][abcisse][ordonnee]
-            meilleuresActions.append(meilleureAction)
+        meilleuresActions = np.chararray((len(self.grid), len(self.grid[0])))
+        for i in range(self.grid.shape[0]):
+            for j in range(self.grid.shape[1]):
+                if (i, j) in states:
+                    #print i, j, " : "
+                    meilleureRecompense = -9999
+                    meilleureAction = "_"
+                    actions = self.trouverActions((i, j))
 
-        return meilleuresActions
+                    for ordonnee in range(len(actions)):
+                        #print " action : ", actions[ordonnee], " pour valeur : ", Q_t_a[t - 1][states.index((i, j))][ordonnee]
+                        if Q_t_a[t - 1][states.index((i, j))][ordonnee] > meilleureRecompense:
+                            meilleureAction = actions[ordonnee]
+                            meilleureRecompense = Q_t_a[t - 1][states.index((i, j))][ordonnee]
+                            #print "meilleure action : ", actions[ordonnee]
+                            #print "meilleure recompense : ", meilleureRecompense
+                    meilleuresActions[i, j] = meilleureAction
+        return meilleuresActions, t
 
-        

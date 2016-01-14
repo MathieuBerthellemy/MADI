@@ -6,8 +6,24 @@ from Solver_PDM import *
 import numpy
 import math
 import time
+import sys
 
-question = 2
+
+#taille de la grille
+nblignes=int(sys.argv[1])
+nbcolonnes=int(sys.argv[2])
+
+question = int(sys.argv[3])
+alea = int(sys.argv[4]) #transitions aleatoires si alea =1 sinon mettre alea=0
+
+
+# Question 2
+do_PL_dual = False
+do_PL_primal = False
+
+# if int(sys.argv[3]) == 2:
+#     do_PL_dual = True
+#     do_PL_primal = True
 
 def initialize():
     global PosX,PosY,cost, globalcost
@@ -83,6 +99,44 @@ def colordraw(g,nblignes,nbcolonnes):
                     
     g[nblignes-1,nbcolonnes-1]=5
   
+
+def get_action_result(current_case, action):
+    output = None
+
+    if action == 'Y':
+        output = (current_case[0]-2, current_case[1]+1)
+
+    # deplacement (-2,-1)
+    if action == 'T':
+        output = (current_case[0]-2, current_case[1]-1)
+
+   # deplacement (-1,2)
+    if action == 'U':
+        output = (current_case[0]-1, current_case[1]+2)
+
+    # deplacement (-1,-2)
+    if action == 'R':
+        output = (current_case[0]-1, current_case[1]-2)
+
+     # deplacement (2,1)  
+    if action == 'H':
+        output = (current_case[0]+2, current_case[1]+1)
+
+    # deplacement (2,-1)
+    if action == 'G':
+        output = (current_case[0]+2, current_case[1]-1)
+
+   # deplacement (1,2)
+    if action == 'J':
+        output = (current_case[0]+1, current_case[1]+2)
+
+    # deplacement (1,-2)
+    if action == 'F':
+        output = (current_case[0]+1, current_case[1]-2)
+
+    return output
+
+
 
 def Play(selector, li, cj):
     global PosX,PosY,cost,g, globalcost, s
@@ -320,11 +374,8 @@ Mafenetre.title('MDP')
 zoom = 2
 
 
-alea = 1 #transitions aleatoires si alea =1 sinon mettre alea=0
 
-#taille de la grille
-nblignes=5
-nbcolonnes=15
+
  
 globalcost=0
 
@@ -343,7 +394,7 @@ if question == 1:
     weight[2] = 20
     weight[3] = 30
     weight[4] = 40
-    weight[5] = 998
+    weight[5] = -1000
 elif question == 2:
     weight[0] = 0
     weight[1] = 0
@@ -369,7 +420,7 @@ Canevas = Canvas(Mafenetre, width = Largeur, height =Hauteur, bg =mywhite)
 PosX = 20+10*zoom
 PosY = 20+10*zoom
 Pion = Canevas.create_oval(PosX-10,PosY-10,PosX+10,PosY+10,width=2,outline='black',fill=myyellow)
-
+Canevas.tag_lower(Pion)
 
 
  
@@ -401,13 +452,46 @@ colordraw(g,nblignes,nbcolonnes)
 
 print g
 if question == 1:
-    s = SolverIteration2(g, weight)
+    s = None
+
+
+    t0 = time.time()
+    if alea == 1:
+        s = SolverIteration(g, weight, True)
+    else:
+        s = SolverIteration(g, weight, False)
+
+    print "temps de calcul: %f"%(time.time()-t0)
     #print s.solution
     #print s.values
 elif question == 2:
     #s = SolverGurobiDual(g, weight)
-    #s = SolverGurobiDual(g, weight)
-    s = SolverGurobiPrimal(g, weight)
+    #s2 = SolverGurobiDual(g, weight, False)
+    
+    # a = 10
+    # cum_count_time_1 = 0
+    # cum_count_time_2 = 0
+    # for i in range(a):
+    #     t0 = time.time()
+    #     s1 = SolverGurobiDual(g, weight, True)
+    #     cum_count_time_1 += time.time() - t0
+
+    #     t0 = time.time()
+    #     s2 = SolverGurobiDual(g, weight, False)
+    #     cum_count_time_2 += time.time() - t0
+
+
+    # print cum_count_time_1/float(a)
+    # print cum_count_time_2/float(a)
+    # s = None
+    # if do_PL_primal:
+    #     s = SolverGurobiPrimal(g, weight)
+
+    # if do_PL_dual:
+    #     s = SolverGurobiDual(g, weight)
+
+     s = SolverGurobiPrimal(g, weight)
+     s2 = SolverGurobiDual(g, weight)
     #print s.solution
     #print s.values
 
@@ -445,27 +529,45 @@ for lin in range(width):
     for col in range(height):
         y = col*20*zoom+20
         x = lin*20*zoom+20
-            
-        
         if g[lin][col] != -1 :
-
-            (red, green, blue) = echelle((92, 84, 164), (252, 254, 180), (175, 16, 71), int(s.values[lin][col]), int(np.nanmin(s.values)), int(np.nanmax(s.values)))
-            
             # print s.values[lin][col], min_except(s.values, -1), s.values.max()
             # print red, green, blue
-            case_color = "#%02x%02x%02x"%(red, green, blue) 
-            #rec = Canevas.create_rectangle(y, x, y+zoom*20, x+zoom*20, fill=case_color)
+            if question == 1 and alea == 1:
+                (red, green, blue) = echelle((92, 84, 164), (252, 254, 180), (175, 16, 71), int(s.values[lin][col]), int(np.nanmin(s.values)), int(np.nanmax(s.values)))
+                case_color = "#%02x%02x%02x"%(red, green, blue) 
+                rec = Canevas.create_rectangle(y, x, y+zoom*20, x+zoom*20, fill=case_color)
+                Canevas.tag_lower(rec)  
+                l = Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
+                Canevas.lower(l)
+                
 
-            #Canevas.tag_lower(rec)   
-            #Canevas.create_text(y +10, x +10, text=s.get_move(lin, col))
-            #Canevas.create_text(y + 20, x +30, text=int(s.values[lin][col]))
+            Canevas.create_text(y +10, x +30, text=s.get_move(lin, col))
+
+            if question == 2:
+                Canevas.create_text(y +30, x +10, text=s2.get_move(lin, col))
+            
+
+if question == 1 and alea == 0:
+    prev = (0, 0)
+    Canevas.create_oval(40-3, 40-3, 40+3, 40+3, fill='white')
+        
+    while True:
+        next_case = get_action_result(prev, s.get_move(prev[0], prev[1]))
+        print s.get_move(prev[0], prev[1])
+        print next_case
+        
+        l = Canevas.create_line(prev[1]*20*zoom+40, prev[0]*20*zoom+40, next_case[1]*20*zoom+40, next_case[0]*20*zoom+40)
+        
+        Canevas.create_oval(next_case[1]*20*zoom+40-3, next_case[0]*20*zoom+40-3, next_case[1]*20*zoom+40+3, next_case[0]*20*zoom+40+3, fill='white')
+        Canevas.tag_lower(l)
+        prev = next_case
+        if prev[0] == g.shape[0]-1 and prev[1] == g.shape[1]-1:
+            break
 
 
 if question == 1:
     pass
 elif question == 2:
-    do_PL_dual = True
-    do_PL_primal = True
 
     s_1 = None
     s_2 = None
@@ -487,6 +589,7 @@ elif question == 2:
         t0_1 = time.time()
         s_1 = SolverGurobiDual(g, weight)
         count_time_1 = time.time() - t0_1
+        print s_1.solution
 
 
     if do_PL_primal:
@@ -514,7 +617,6 @@ elif question == 2:
                 #print "rep", i
                 while True:
                     count_score_1 -= 2
-                    count_score_1 = count_score_1 + red + blue
                     
                     count_coup_1 += 1
                    
@@ -525,6 +627,9 @@ elif question == 2:
                     count_blue_1 += blue
                     count_red_1 += red
 
+                    count_score_1 = count_score_1 + red + blue
+                   
+
                     #print x, y
                     if x == nblignes-1 and y == nbcolonnes-1:
                         count_score_1 += 1000
@@ -534,7 +639,7 @@ elif question == 2:
                         cum_count_coup_1 += count_coup_1
                         cum_count_score_1 += count_score_1
                         break
-                file1.write("%d; %d\n"%(count_red_1, count_blue_1)) 
+                file1.write("%d; %d\n"%(count_red_1-2*count_coup_1+1000, count_blue_1-2*count_coup_1+1000)) 
             
             
             if do_PL_primal:
@@ -547,7 +652,6 @@ elif question == 2:
                 while True:
 
                     count_score_2 -= 2
-                    count_score_2 = count_score_2 + red + blue
                     
                     count_coup_2 += 1
                    
@@ -558,6 +662,8 @@ elif question == 2:
                     count_blue_2 += blue
                     count_red_2 += red
 
+                    count_score_2 = count_score_2 + red + blue
+                    
                     #print x, y
                     if x == nblignes-1 and y == nbcolonnes-1:
                         count_score_2 += 1000
@@ -567,11 +673,11 @@ elif question == 2:
                         cum_count_coup_2 += count_coup_2
                         cum_count_score_2 += count_score_2
                         break
-                file2.write("%d; %d\n"%(count_red_2, count_blue_2)) 
+                file2.write("%d; %d\n"%(count_red_2-2*count_coup_2+1000, count_blue_2-2*count_coup_2+1000)) 
             
             
         if do_PL_dual:
-            print "######## PL ########"
+            print "######## Algo1 ########"
             print "BLUE: ", np.mean(bleu_1)
             print "RED: ", np.mean(rouge_1)
             print "Coups: ", cum_count_coup_1/float(rep)
@@ -580,13 +686,13 @@ elif question == 2:
             print "####################"
 
         if do_PL_primal:
-            print "#### Iteration ####"
+            print "######## Algo2 ########"
             print "BLUE: ", np.mean(bleu_2)
             print "RED: ", np.mean(rouge_2)
             print "Coups: ", cum_count_coup_2/float(rep)
             print "Score: ", cum_count_score_2/float(rep)
             print "Computing: %.2f"%count_time_2
-            print "###################"
+            print "####################"
 
 
     file1.close()
